@@ -26,7 +26,7 @@ else
     sudo apt-get install git
 fi
 
-if command -v brz > /dev/null 2>&1; then
+if command -v bzr > /dev/null 2>&1; then
     echo "git exists"
 else
     echo "Installing bzr"
