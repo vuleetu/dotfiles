@@ -119,8 +119,8 @@ fi
 
 if [ ! -d ~/.oh-my-zsh/powerline-bash ]; then
     echo "Installing powerline-shell for zsh"
-    git clone https://github.com/milkbikis/powerline-shell ~/.oh-my-zsh/
-    cd ~/.oh-my-zsh/powerline-bash && ./install.py && ln powerline-shell.py ~/powerline-shell.py
+    git clone https://github.com/milkbikis/powerline-shell ~/.oh-my-zsh/powerline-shell
+    cd ~/.oh-my-zsh/powerline-shell && ./install.py && ln powerline-shell.py ~/powerline-shell.py
 fi
 
 
