@@ -70,7 +70,7 @@ echo "Link to ~/.vimrc"
 # link to .vimrc
 ln vimrc ~/.vimrc
 # bundle install
-echo :Installing vim plugins via vundle
+echo "Installing vim plugins via vundle"
 vim +BundleInstall +qall
 
 #### FONTS PATCH #####
@@ -91,6 +91,9 @@ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | 
 echo "Installing powerline-shell for zsh"
 git clone https://github.com/milkbikis/powerline-shell ~/.oh-my-zsh/
 cd ~/.oh-my-zsh/powerline-bash && ./install.py && ln powerline-shell.py ~/powerline-shell.py
+echo "Installing autojump"
+git clone git://github.com/joelthelion/autojump.git
+cd autojump && ./install.sh
 echo "Backup ~/.zshrc to ~/.zshrc.bbk"
 cp -rf ~/.zshrc ~/.zshrc.bbk
 echo "Link to ~/.zshrc"
