@@ -48,6 +48,12 @@ else
     export GOBIN=~/download/go/bin
 fi
 
+if command -v lua > /dev/null 2>&1; then
+    echo "lua exists"
+else
+    sudo apt-get install lua5.2
+fi
+
 if command -v curl > /dev/null 2>&1; then
     echo "curl exists"
 else
