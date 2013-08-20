@@ -367,6 +367,9 @@ let NERDTreeWinSize = 38
 
 "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 let g:Powerline_symbols = 'fancy'
+"change the terminal fonts to SourceCode-Pro
+"if the symblo in powerline is strange, run the following commnd
+" :PowerlineClearCache
 
 "lua
 let g:lua_complete_omni = 1
