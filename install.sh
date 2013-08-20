@@ -38,14 +38,31 @@ fi
 if command -v go > /dev/null 2>&1; then
     echo "golang exists"
 else
-    echo "Installing golang"
-    mkdir -p ~/download/
-    mkdir -p ~/project/
-    wget -O ~/download/go1.1.2.src.tar.gz http://go.googlecode.com/files/go1.1.2.src.tar.gz ~/download/
-    cd ~/download/ && tar zxvf go1.1.2.src.tar.gz && cd go/src && ./all.bash
-    export PATH=$PATH:~/download/go/bin
-    export GOPATH=~/project
-    export GOBIN=~/download/go/bin
+    if [ ! -f ~/download/go/bin/go ]; then
+        echo "Installing golang"
+        mkdir -p ~/download/
+        mkdir -p ~/project/
+        wget -O ~/download/go1.1.2.src.tar.gz http://go.googlecode.com/files/go1.1.2.src.tar.gz ~/download/
+        cd ~/download/ && tar zxvf go1.1.2.src.tar.gz && cd go/src && ./all.bash
+    fi
+
+    if [ -z "$GOROOT" ]; then
+        export GOROOT=~/download/go
+        echo "GOROOT=~/download/go" >> ~/.bashrc
+    fi
+
+    if [ -z "$GOPATH" ]; then
+        export GOPATH=~/project
+        echo "GOPATH=~/project" >> ~/.bashrc
+    fi
+
+    if [ -z "$GOBIN" ]; then
+        export GOBIN=$GOROOT/bin
+        echo "GOBIN=\$GOROOT/bin" >> ~/.bashrc
+    fi
+
+    export PATH=$PATH:$GOROOT/bin
+    echo "PATH=\$PATH:$GOROOT/bin" >> ~/.bashrc
 fi
 
 if command -v lua > /dev/null 2>&1; then
