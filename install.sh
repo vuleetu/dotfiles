@@ -39,7 +39,7 @@ else
     echo "Installing golang"
     mkdir -p ~/download/
     mkdir -p ~/project/
-    wget http://go.googlecode.com/files/go1.1.2.src.tar.gz ~/download/
+    wget -O ~/download/go1.1.2.src.tar.gz http://go.googlecode.com/files/go1.1.2.src.tar.gz ~/download/
     cd ~/download/ && tar zxvf go1.1.2.src.tar.gz && cd go/src && ./all.bash
     export PATH=$PATH:~/download/go/bin
     export GOPATH=~/project
