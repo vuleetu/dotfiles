@@ -60,6 +60,7 @@ else
 
     echo "export PATH=\$PATH:$GOROOT/bin" >> ~/.bashrc
 
+    echo "reload .bashrc"
     source ~/.bashrc
 fi
 
