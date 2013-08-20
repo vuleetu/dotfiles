@@ -1,22 +1,68 @@
 #!/usr/bin/env bash
 
 #### GIT ####
-echo "Installing vim"
-sudo apt-get install vim
-echo "Installing make, git, bzr"
-sudo apt-get install make, git bzr
-echo "Installing golang"
-wget http://go.googlecode.com/files/go1.1.2.src.tar.gz
-tar zxvf go1.1.2.src.tar.gz && cd go/src && ./all.bash
+# command, type, hash
+# command -v foo >/dev/null 2>&1
+# type foo >/dev/null 2>&1
+# hash foo 2>/dev/null
+if command -v vim > /dev/null 2>&1; then
+    echo "vim exists"
+else
+    echo "Installing vim"
+    sudo apt-get install vim
+fi
+
+if command -v make > /dev/null 2>&1; then
+    echo "make exists"
+else
+    echo "Installing make"
+    sudo apt-get install make
+fi
+
+if command -v git > /dev/null 2>&1; then
+    echo "git exists"
+else
+    echo "Installing git"
+    sudo apt-get install git
+fi
+
+if command -v brz > /dev/null 2>&1; then
+    echo "git exists"
+else
+    echo "Installing bzr"
+    sudo apt-get install bzr
+fi
+
+if command -v go > /dev/null 2>&1; then
+    echo "golang exists"
+else
+    echo "Installing golang"
+    mkdir -p ~/download/
+    mkdir -p ~/project/
+    wget http://go.googlecode.com/files/go1.1.2.src.tar.gz ~/download/
+    cd ~/download/ && tar zxvf go1.1.2.src.tar.gz && cd go/src && ./all.bash
+    export PATH=$PATH:~/download/go/bin
+    export GOPATH=~/project
+    export GOBIN=~/download/go/bin
+fi
 
 ##### VIM #####
 # install gocode, install golang first
-echo "Installing gocode for golang auto complete feature"
-go get -u github.com/nsf/gocode
-cd .vim/bundle/gocode/vim && ./update.sh
+if command -v gocode > /dev/null 2>&1; then
+    echo "gocode exists"
+else
+    echo "Installing gocode for golang auto complete feature"
+    go get -u github.com/nsf/gocode
+    cd .vim/bundle/gocode/vim && ./update.sh
+fi
 # install nodejs
-echo "Installing nodejs, we will have realtime syntax report"
-sudo apt-get install nodejs
+if command -v node > /dev/null 2>&1; then
+    echo "node.js exists"
+else
+    echo "Installing nodejs, we will have realtime syntax report"
+    sudo apt-get install nodejs
+fi
+
 echo "Link to ~/.vimrc"
 # link to .vimrc
 ln vimrc ~/.vimrc
