@@ -60,9 +60,11 @@ else
 
     echo "export PATH=\$PATH:\$GOROOT/bin" >> ~/.bashrc
 
-    echo "reload .bashrc"
+    echo "reload ~/.bashrc"
     source ~/.bashrc
 fi
+
+env
 
 if command -v lua > /dev/null 2>&1; then
     echo "lua exists"
