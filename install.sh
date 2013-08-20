@@ -74,7 +74,6 @@ if command -v gocode > /dev/null 2>&1; then
 else
     echo "Installing gocode for golang auto complete feature"
     go get -u github.com/nsf/gocode
-    cd ~/.vim/bundle/gocode/vim && ./update.sh
 fi
 # install nodejs
 if command -v node > /dev/null 2>&1; then
@@ -102,6 +101,9 @@ ln $wt/vimrc ~/.vimrc
 # bundle install
 echo "Installing vim plugins via vundle"
 vim +BundleInstall +qall
+
+echo "Updating gocode"
+cd ~/.vim/bundle/vundle/gocode/vim && ./update.sh
 
 #### FONTS PATCH #####
 # so we can use powerline-fonts for vim and zshrc
