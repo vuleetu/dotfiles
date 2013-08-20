@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+wt=$PWD
+
 #### GIT ####
 # command, type, hash
 # command -v foo >/dev/null 2>&1
@@ -78,7 +80,7 @@ fi
 
 echo "Link to ~/.vimrc"
 # link to .vimrc
-ln vimrc ~/.vimrc
+ln $wt/vimrc ~/.vimrc
 # bundle install
 echo "Installing vim plugins via vundle"
 vim +BundleInstall +qall
@@ -126,8 +128,6 @@ if [ ! -d ~/.oh-my-zsh/powerline-bash ]; then
     cd ~/.oh-my-zsh/powerline-shell && ./install.py && ln powerline-shell.py ~/powerline-shell.py
 fi
 
-echo $PWD
-
 if [ ! -d ~/autojump ]; then
     echo "Installing autojump"
     git clone git://github.com/joelthelion/autojump.git ~/autojump
@@ -140,6 +140,6 @@ if [ -f ~/.zshrc ]; then
 fi
 
 echo "Link to ~/.zshrc"
-ln zshrc ~/.zshrc
+ln $wt/zshrc ~/.zshrc
 echo "Changing shell"
 chsh -s /bin/zsh
