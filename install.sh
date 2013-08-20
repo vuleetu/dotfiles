@@ -3,8 +3,8 @@
 #### GIT ####
 echo "Installing vim"
 sudo apt-get install vim
-echo "Installing git, bzr"
-sudo apt-get install git bzr
+echo "Installing make, git, bzr"
+sudo apt-get install make, git bzr
 echo "Installing golang"
 wget http://go.googlecode.com/files/go1.1.2.src.tar.gz
 tar zxvf go1.1.2.src.tar.gz && cd go/src && ./all.bash
