@@ -47,22 +47,20 @@ else
     fi
 
     if [ -z "$GOROOT" ]; then
-        export GOROOT=~/download/go
-        echo "GOROOT=~/download/go" >> ~/.bashrc
+        echo "export GOROOT=~/download/go" >> ~/.bashrc
     fi
 
     if [ -z "$GOPATH" ]; then
-        export GOPATH=~/project
-        echo "GOPATH=~/project" >> ~/.bashrc
+        echo "export GOPATH=~/project" >> ~/.bashrc
     fi
 
     if [ -z "$GOBIN" ]; then
-        export GOBIN=$GOROOT/bin
-        echo "GOBIN=\$GOROOT/bin" >> ~/.bashrc
+        echo "export GOBIN=\$GOROOT/bin" >> ~/.bashrc
     fi
 
-    export PATH=$PATH:$GOROOT/bin
-    echo "PATH=\$PATH:$GOROOT/bin" >> ~/.bashrc
+    echo "export PATH=\$PATH:$GOROOT/bin" >> ~/.bashrc
+
+    source ~/.bashrc
 fi
 
 if command -v lua > /dev/null 2>&1; then
