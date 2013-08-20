@@ -133,10 +133,10 @@ if [ ! -d ~/.oh-my-zsh/powerline-shell ]; then
     cd ~/.oh-my-zsh/powerline-shell && ./install.py && ln powerline-shell.py ~/powerline-shell.py
 fi
 
-if [ ! -d ~/autojump ]; then
+if [ ! -d ~/.autojump ]; then
     echo "Installing autojump"
-    git clone git://github.com/joelthelion/autojump.git ~/autojump
-    cd ~/autojump && ./install.sh
+    git clone git://github.com/joelthelion/.autojump.git ~/.autojump
+    cd ~/.autojump && ./install.sh
 fi
 
 if [ -f ~/.zshrc ]; then

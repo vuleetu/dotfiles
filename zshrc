@@ -33,18 +33,31 @@ ZSH_THEME="afowler"
 plugins=(git svn autojump history go docker vagrant)
 
 source $ZSH/oh-my-zsh.sh
-. ~/.zsh/aliases.zsh
 
 # Customize to your needs...
-export PATH=/home/fisher/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/qq2011/bin:/home/fisher/Downloads/go/bin
-export GOROOT=/home/fisher/Downloads/go
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+export GOROOT=~/download/go
 export GOBIN=$GOROOT/bin
-export GOPATH=/home/fisher/go/mygo
-#devilspie&
-function powerline_precmd()
-{
-   export PS1="$(~/powerline-bash.py $? --shell zsh)"
+export GOPATH=~/project
+
+#autojump
+[[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && . ~/.autojump/etc/profile.d/autojump.zsh
+
+#powerline
+function powerline_precmd() {
+  export PS1="$(~/powerline-shell/powerline-shell.py $? --shell zsh)"
 }
 
-precmd_functions+=(powerline_precmd)
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+install_powerline_precmd
+
+#.gitignore
 function gi() { curl http://gitignore.io/api/ ;}
