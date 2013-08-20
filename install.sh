@@ -1,5 +1,14 @@
 #!/bin/env bash
 
+#### GIT ####
+@echo "Installing vim"
+sudo apt-get install vim
+@echo "Installing git, bzr"
+sudo apt-get install git bzr
+@echo "Installing golang"
+wget http://go.googlecode.com/files/go1.1.2.src.tar.gz
+tar zxvf go1.1.2.src.tar.gz && cd go/src && ./all.bash
+
 ##### VIM #####
 # install gocode, install golang first
 @echo "Installing gocode for golang auto complete feature"
