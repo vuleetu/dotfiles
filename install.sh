@@ -63,7 +63,7 @@ if command -v gocode > /dev/null 2>&1; then
 else
     echo "Installing gocode for golang auto complete feature"
     go get -u github.com/nsf/gocode
-    cd .vim/bundle/gocode/vim && ./update.sh
+    cd ~/.vim/bundle/gocode/vim && ./update.sh
 fi
 # install nodejs
 if command -v node > /dev/null 2>&1; then
@@ -123,11 +123,12 @@ if [ ! -d ~/.oh-my-zsh/powerline-bash ]; then
     cd ~/.oh-my-zsh/powerline-shell && ./install.py && ln powerline-shell.py ~/powerline-shell.py
 fi
 
+echo $PWD
 
 if [ ! -d ~/autojump ]; then
     echo "Installing autojump"
     git clone git://github.com/joelthelion/autojump.git ~/autojump
-    cd autojump && ./install.sh
+    cd ~/autojump && ./install.sh
 fi
 
 if [ -f ~/.zshrc ]; then
