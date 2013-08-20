@@ -175,6 +175,7 @@ else
 endif
 colorscheme solarized
 
+set encoding=utf-8
 set winaltkeys=no
 set nobackup
 set ignorecase
