@@ -47,6 +47,9 @@ else
 fi
 
 ##### VIM #####
+# install vundle
+echo "Installing vundle"
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 # install gocode, install golang first
 if command -v gocode > /dev/null 2>&1; then
     echo "gocode exists"
@@ -66,9 +69,6 @@ fi
 echo "Link to ~/.vimrc"
 # link to .vimrc
 ln vimrc ~/.vimrc
-# install vundle
-echo "Installing vundle"
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 # bundle install
 echo :Installing vim plugins via vundle
 vim +BundleInstall +qall
