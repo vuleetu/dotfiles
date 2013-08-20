@@ -46,6 +46,13 @@ else
     export GOBIN=~/download/go/bin
 fi
 
+if command -v curl > /dev/null 2>&1; then
+    echo "curl exists"
+else
+    echo "Installing curl"
+    sudo apt-get install curl
+fi
+
 ##### VIM #####
 # install vundle
 echo "Installing vundle"
@@ -76,27 +83,58 @@ vim +BundleInstall +qall
 #### FONTS PATCH #####
 # so we can use powerline-fonts for vim and zshrc
 echo "Patch fonts"
-git clone https://github.com/Lokaltog/powerline-fonts.git ~/fonts
-mkdir ~/.fonts && cp -rf ~/fonts/* ~/.fonts/
+if [ ! -d ~/fonts ]; then
+    git clone https://github.com/Lokaltog/powerline-fonts.git ~/fonts
+fi
+
+if [ ! -d ~/.fonts ]; then
+    mkdir ~/.fonts
+fi
+
+cp -rf ~/fonts/* ~/.fonts/
 echo "Generate fonts cache"
-sudo apt-get install fontconfig
+if command -v fc-cache > /dev/null 2>&1; then
+    echo "fontconfig exists"
+else
+    echo "Installing fontconfig which contains fc-cache"
+    sudo apt-get install fontconfig
+fi
+
 fc-cache -vf ~/.fonts
 #config the terminal to use SourceCode-Pro font(my prefered font)
 echo "You may need to change the fonts in terminal(use SourceCode-Pro)"
 
 #### ZSH ####
-echo "Installing zsh"
-sudo apt-get install zsh
-echo "Installing oh-my-zsh"
-curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-echo "Installing powerline-shell for zsh"
-git clone https://github.com/milkbikis/powerline-shell ~/.oh-my-zsh/
-cd ~/.oh-my-zsh/powerline-bash && ./install.py && ln powerline-shell.py ~/powerline-shell.py
-echo "Installing autojump"
-git clone git://github.com/joelthelion/autojump.git
-cd autojump && ./install.sh
-echo "Backup ~/.zshrc to ~/.zshrc.bbk"
-cp -rf ~/.zshrc ~/.zshrc.bbk
+if command -v zsh > /dev/null 2>&1; then
+    echo "zsh exists"
+else
+    echo "Installing zsh"
+    sudo apt-get install zsh
+fi
+
+if [ ! -d ~/.oh-my-zsh ]; then
+    echo "Installing oh-my-zsh"
+    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+fi
+
+if [ ! -d ~/.oh-my-zsh/powerline-bash ]; then
+    echo "Installing powerline-shell for zsh"
+    git clone https://github.com/milkbikis/powerline-shell ~/.oh-my-zsh/
+    cd ~/.oh-my-zsh/powerline-bash && ./install.py && ln powerline-shell.py ~/powerline-shell.py
+fi
+
+
+if [ ! -d ~/autojump ]; then
+    echo "Installing autojump"
+    git clone git://github.com/joelthelion/autojump.git ~/autojump
+    cd autojump && ./install.sh
+fi
+
+if [ -f ~/.zshrc ]; then
+    echo "Backup ~/.zshrc to ~/.zshrc.bbk"
+    mv ~/.zshrc ~/.zshrc.bbk
+fi
+
 echo "Link to ~/.zshrc"
 ln zshrc ~/.zshrc
 echo "Changing shell"
