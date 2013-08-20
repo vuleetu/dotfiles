@@ -27,7 +27,7 @@ else
 fi
 
 if command -v bzr > /dev/null 2>&1; then
-    echo "git exists"
+    echo "bzr exists"
 else
     echo "Installing bzr"
     sudo apt-get install bzr
