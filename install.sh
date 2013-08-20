@@ -78,6 +78,13 @@ else
     sudo apt-get install nodejs
 fi
 
+if command -v ctags > /dev/null 2>&1; then
+    echo "ctags exists"
+else
+    echo "Installing exuberant-ctags, we will have ctags command"
+    sudo apt-get install exuberant-ctags
+fi
+
 if [ -f ~/.vimrc ]; then
     echo "Backup ~/.vimrc to ~/.vimrc.bbk"
     mv ~/.vimrc ~/.vimrc.bbk
