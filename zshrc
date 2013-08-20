@@ -45,7 +45,7 @@ export GOPATH=~/project
 
 #powerline
 function powerline_precmd() {
-  export PS1="$(~/powerline-shell/powerline-shell.py $? --shell zsh)"
+  export PS1="$(~/powerline-shell.py $? --shell zsh)"
 }
 
 function install_powerline_precmd() {

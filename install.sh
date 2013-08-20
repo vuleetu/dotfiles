@@ -137,7 +137,13 @@ fi
 if [ ! -d ~/.oh-my-zsh/powerline-shell ]; then
     echo "Installing powerline-shell for zsh"
     git clone https://github.com/milkbikis/powerline-shell ~/.oh-my-zsh/powerline-shell
-    cd ~/.oh-my-zsh/powerline-shell && ./install.py && ln powerline-shell.py ~/powerline-shell.py
+    cd ~/.oh-my-zsh/powerline-shell && ./install.py
+
+    if [ -f ~/powerline-shell.py ]; then
+        echo "Replace ~/powerline-shell.py with new one"
+    fi
+
+    ln ~/.oh-my-zsh/powerline-shell/powerline-shell.py ~/powerline-shell.py
 fi
 
 if [ ! -d $wt/autojump ]; then
