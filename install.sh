@@ -78,6 +78,11 @@ else
     sudo apt-get install nodejs
 fi
 
+if [ -f ~/.vimrc ]; then
+    echo "Backup ~/.vimrc to ~/.vimrc.bbk"
+    mv ~/.vimrc ~/.vimrc.bbk
+fi
+
 echo "Link to ~/.vimrc"
 # link to .vimrc
 ln $wt/vimrc ~/.vimrc
