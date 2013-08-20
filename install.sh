@@ -112,7 +112,7 @@ echo "Installing vim plugins via vundle"
 vim +BundleInstall +qall
 
 echo "Updating gocode"
-cd ~/.vim/bundle/vundle/gocode/vim && ./update.sh
+cd ~/.vim/bundle/gocode/vim && ./update.sh
 
 #### FONTS PATCH #####
 # so we can use powerline-fonts for vim and zshrc
@@ -178,3 +178,8 @@ echo "Link to ~/.zshrc"
 ln $wt/zshrc ~/.zshrc
 echo "Changing shell"
 chsh -s /bin/zsh
+
+#### DOCKER ####
+#https://github.com/dotcloud/docker
+echo "Installing docker"
+curl https://get.docker.io | sudo sh -x
