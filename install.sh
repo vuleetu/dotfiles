@@ -127,7 +127,7 @@ if [ ! -d ~/.oh-my-zsh ]; then
     curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 fi
 
-if [ ! -d ~/.oh-my-zsh/powerline-bash ]; then
+if [ ! -d ~/.oh-my-zsh/powerline-shell ]; then
     echo "Installing powerline-shell for zsh"
     git clone https://github.com/milkbikis/powerline-shell ~/.oh-my-zsh/powerline-shell
     cd ~/.oh-my-zsh/powerline-shell && ./install.py && ln powerline-shell.py ~/powerline-shell.py
