@@ -77,8 +77,9 @@ vim +BundleInstall +qall
 # so we can use powerline-fonts for vim and zshrc
 echo "Patch fonts"
 git clone https://github.com/Lokaltog/powerline-fonts.git ~/fonts
-cp -rf ~/fonts/* ~/.fonts/
+mkdir ~/.fonts && cp -rf ~/fonts/* ~/.fonts/
 echo "Generate fonts cache"
+sudo apt-get install fontconfig
 fc-cache -vf ~/.fonts
 #config the terminal to use SourceCode-Pro font(my prefered font)
 echo "You may need to change the fonts in terminal(use SourceCode-Pro)"
