@@ -46,25 +46,16 @@ else
         cd ~/download/ && tar zxvf go1.1.2.src.tar.gz && cd go/src && ./all.bash
     fi
 
-    if [ -z "$GOROOT" ]; then
-        echo "export GOROOT=~/download/go" >> ~/.bashrc
+    if [ ! -f $wt/env.sh ]; then
+        echo "export GOROOT=~/download/go" >> $wt/env.sh
+        echo "export GOPATH=~/project" >> $wt/env.sh
+        echo "export GOBIN=\$GOROOT/bin" >> $wt/env.sh
+        echo "export PATH=\$PATH:\$GOROOT/bin" >> $wt/env.sh
     fi
 
-    if [ -z "$GOPATH" ]; then
-        echo "export GOPATH=~/project" >> ~/.bashrc
-    fi
-
-    if [ -z "$GOBIN" ]; then
-        echo "export GOBIN=\$GOROOT/bin" >> ~/.bashrc
-    fi
-
-    echo "export PATH=\$PATH:\$GOROOT/bin" >> ~/.bashrc
-
-    echo "reload ~/.bashrc"
-    source ~/.bashrc
+    echo "reload ./env.sh"
+    source $wt/env.sh
 fi
-
-env
 
 if command -v lua > /dev/null 2>&1; then
     echo "lua exists"
