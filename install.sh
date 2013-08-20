@@ -58,7 +58,7 @@ else
         echo "export GOBIN=\$GOROOT/bin" >> ~/.bashrc
     fi
 
-    echo "export PATH=\$PATH:$GOROOT/bin" >> ~/.bashrc
+    echo "export PATH=\$PATH:\$GOROOT/bin" >> ~/.bashrc
 
     echo "reload .bashrc"
     source ~/.bashrc
