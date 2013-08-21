@@ -184,7 +184,7 @@ chsh -s /bin/zsh
 if command -v docker > /dev/null 2>&1; then
     echo "docker found"
 else
-    echo "Install docker(y/N)?"
+    echo -n "Install docker(y/N)?"
     read dyn
     case $dyn in
         [Yy]* ) echo "Installing docker"; curl https://get.docker.io | sudo sh -x;;
