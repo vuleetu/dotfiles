@@ -60,4 +60,4 @@ function install_powerline_precmd() {
 install_powerline_precmd
 
 #.gitignore
-function gi() { curl http://gitignore.io/api/ ;}
+function gi() { curl http://gitignore.io/api/$@ ;}
