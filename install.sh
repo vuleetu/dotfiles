@@ -181,6 +181,8 @@ if ! command -v http > /dev/null 2>&1; then
     case $dyn in
         [Yy]* )
             #check if pip or easy_install installed
+            #sudo apt-get install python-setuptools
+            #easy_install httpie
             if ! command -v pip > /dev/null 2>&1; then
                 sudo apt-get install python-pip
             fi
