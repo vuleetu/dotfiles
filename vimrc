@@ -71,6 +71,8 @@ Bundle "mattn/gist-vim"
 Bundle "tpope/vim-fugitive"
 ""indent object
 Bundle "michaeljsmith/vim-indent-object"
+"Splitjoin
+Bundle "AndrewRadev/splitjoin.vim"
 "yankring
 Bundle "vim-scripts/YankRing.vim"
 "text object for argument
