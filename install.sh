@@ -144,10 +144,12 @@ if [ ! -d ~/.oh-my-zsh/powerline-shell ]; then
     ln ~/.oh-my-zsh/powerline-shell/powerline-shell.py ~/powerline-shell.py
 fi
 
-if [ ! -d $wt/autojump ]; then
-    echo "Installing autojump"
-    git clone git://github.com/joelthelion/autojump.git $wt/autojump
-    cd $wt/autojump && ./install.sh
+if ! command -v autojump > /dev/null 2>&1; then
+    if [ ! -d $wt/autojump ]; then
+        echo "Installing autojump"
+        git clone git://github.com/joelthelion/autojump.git $wt/autojump
+        cd $wt/autojump && ./install.sh
+    fi
 fi
 
 if [ -f ~/.zshrc ]; then
