@@ -107,7 +107,7 @@ if [ ! -d ~/fonts ]; then
 fi
 
 if [ ! -d ~/.fonts ]; then
-    mkdir ~/.fonts
+    mkdir -p ~/.fonts
 fi
 
 cp -rf ~/fonts/* ~/.fonts/
@@ -164,7 +164,7 @@ chsh -s /bin/zsh
 
 # install mostlike which support color for man page
 if [ ! -f ~/.terminfo/mostlike.txt ]; then
-    mkdir ~/.terminfo
+    mkdir -p ~/.terminfo
     if [ ! -f $wt/mostlike.txt ]; then
         wget -O ~/.terminfo/mostlike.txt http://nion.modprobe.de/mostlike.txt
     else
