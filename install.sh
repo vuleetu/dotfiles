@@ -37,7 +37,7 @@ if ! command -v go > /dev/null 2>&1; then
         echo "Installing golang"
         mkdir -p ~/download/
         mkdir -p ~/project/
-        wget -O ~/download/go1.1.2.src.tar.gz http://go.googlecode.com/files/go1.1.2.src.tar.gz ~/download/
+        wget -O ~/download/go1.1.2.src.tar.gz http://go.googlecode.com/files/go1.1.2.src.tar.gz
         cd ~/download/ && tar zxvf go1.1.2.src.tar.gz && cd go/src && ./all.bash
     fi
 
@@ -159,3 +159,16 @@ echo "Link to ~/.zshrc"
 ln $wt/zshrc ~/.zshrc
 echo "Changing shell"
 chsh -s /bin/zsh
+
+# install mostlike which support color for man page
+if [ ! -f ~/.terminfo/mostlike.txt ]; then
+    mkdir ~/.terminfo
+    if [ ! -f $wt/mostlike.txt ]; then
+        wget -O ~/.terminfo/mostlike.txt http://nion.modprobe.de/mostlike.txt
+    else
+        cp -rf mostlike.txt ~/.terminfo/
+    fi
+
+    tic ~/.terminfo/mostlike.txt
+    echo 'alias man="TERMINFO=~/.terminfo/ LESS=C TERM=mostlike PAGER=less man"' >> ~/.zshrc
+fi

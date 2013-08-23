@@ -73,6 +73,8 @@ Bundle "tpope/vim-fugitive"
 Bundle "michaeljsmith/vim-indent-object"
 "Splitjoin
 Bundle "AndrewRadev/splitjoin.vim"
+"multiple cursors
+Bundle "terryma/vim-multiple-cursors"
 "yankring
 Bundle "vim-scripts/YankRing.vim"
 "text object for argument
@@ -118,7 +120,7 @@ Bundle "ZoomWin"
 " Then go to Command-T/ruby/command-t/, run: ruby extconf.rb && make
 "Bundle "wincent/Command-T"
 "Organize window
-Bundle "spolu/dwm.vim"
+"Bundle "spolu/dwm.vim"
 ""Match Tag
 Bundle "gregsexton/MatchTag"
 ""tagbar
