@@ -168,7 +168,7 @@ if [ ! -f ~/.terminfo/mostlike.txt ]; then
     if [ ! -f $wt/mostlike.txt ]; then
         wget -O ~/.terminfo/mostlike.txt http://nion.modprobe.de/mostlike.txt
     else
-        cp -rf mostlike.txt ~/.terminfo/
+        cp -rf $wt/mostlike.txt ~/.terminfo/
     fi
 
     tic ~/.terminfo/mostlike.txt
