@@ -170,7 +170,7 @@ if [ ! -f ~/.terminfo/mostlike.txt ]; then
     else
         cp -rf $wt/mostlike.txt ~/.terminfo/
     fi
-
-    tic ~/.terminfo/mostlike.txt
-    echo 'alias man="TERMINFO=~/.terminfo/ LESS=C TERM=mostlike PAGER=less man"' >> ~/.zshrc
 fi
+
+tic ~/.terminfo/mostlike.txt
+echo 'alias man="TERMINFO=~/.terminfo/ LESS=C TERM=mostlike PAGER=less man"' >> ~/.zshrc
