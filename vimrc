@@ -41,6 +41,8 @@ Bundle "nsf/gocode", {'rtp': 'vim/'}
 ""vimtips plugin
 Bundle "vim-scripts/Fortune-vimtips"
 "Bundle "vim-scripts/vim-pad"
+"moonscript support
+Bundle "leafo/moonscript-vim"
 ""indent manually
 Bundle "godlygeek/tabular"
 ""visual undo plugin
