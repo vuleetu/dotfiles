@@ -174,3 +174,16 @@ fi
 
 tic ~/.terminfo/mostlike.txt
 echo 'alias man="TERMINFO=~/.terminfo/ LESS=C TERM=mostlike PAGER=less man"' >> ~/.zshrc
+
+if ! command -v tmux > /dev/null 2>&1; then
+    echo -n "Install tmux(y/N)?"
+    read dyn
+    case $dyn in
+        [Yy]* )
+            echo "Installing tmux"
+            sudo apt-get install tmux
+            echo 'alias tmux="tmux -2"' >> ~/.zshrc
+            ;;
+        * ) ;;
+    esac
+fi
