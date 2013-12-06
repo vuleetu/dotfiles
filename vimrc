@@ -66,6 +66,8 @@ Bundle "vim-scripts/VOoM"
 "Bundle "vim-scripts/AutoComplPop"
 "html fast coding
 Bundle "mattn/zencoding-vim"
+"cocoa
+Bundle "msanders/cocoa.vim"
 "gist.github.com
 Bundle "mattn/webapi-vim"
 Bundle "mattn/gist-vim"
