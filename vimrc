@@ -23,6 +23,8 @@ Bundle "oscarh/vimerl"
 Bundle "aerosol/vim-erlang-skeletons"
 ""L9 library
 Bundle "vim-scripts/L9"
+""Drawit
+Bundle "vim-scripts/DrawIt"
 ""easy-motion
 "Bundle "Lokaltog/vim-easymotion"
 ""Status bar
@@ -109,6 +111,8 @@ Bundle "mutewinter/vim-indent-guides"
 Bundle "tpope/vim-unimpaired"
 ""search and substitute
 Bundle "tpope/vim-abolish"
+"grep, fgrep
+Bundle "yegappan/grep"
 ""text object for column
 Bundle "coderifous/textobj-word-column.vim"
 ""surround
@@ -212,6 +216,7 @@ set showcmd
 set showmode
 set wildmenu
 set t_Co=256
+set switchbuf=usetab
 "let g:pad_dir="/home/fisher/notepad"
 
 "自动进入上次退出时候的光标位置
@@ -335,6 +340,7 @@ nnoremap <leader>ff :FufFile<CR>
 nnoremap <leader>fb :FufBuffer<CR>
 nnoremap <leader>ft :FufTag<CR>
 nnoremap <leader>fj :FufJumpList<CR>
+let g:fuf_keyOpenTabpage = '<CR>'
 
 "quick search
 "nnoremap // /^[\s\t]*
@@ -400,3 +406,58 @@ let g:dwm_map_keys=1
 "\}
 
 "let g:AutoComplPop_CompleteoptPreview = 1
+
+"if exists("+showtabline")
+    "function! MyTabLine()
+        "let s = ''
+        "let wn = ''
+        "let t = tabpagenr()
+        "let i = 1
+        "while i <= tabpagenr('$')
+            "let buflist = tabpagebuflist(i)
+            "let winnr = tabpagewinnr(i)
+            "let s .= '%' . i . 'T'
+            "let s .= (i == t ? '%1*' : '%2*')
+            "let s .= ' '
+            "let wn = tabpagewinnr(i,'$')
+
+            "let s .= '%#TabNum#'
+            "let s .= i
+            "" let s .= '%*'
+            "let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+            "let bufnr = buflist[winnr - 1]
+            "let file = bufname(bufnr)
+            "let buftype = getbufvar(bufnr, 'buftype')
+            "if buftype == 'nofile'
+                "if file =~ '\/.'
+                    "let file = substitute(file, '.*\/\ze.', '', '')
+                "endif
+            "else
+                "let file = fnamemodify(file, ':p:t')
+            "endif
+            "if file == ''
+                "let file = '[No Name]'
+            "endif
+            "let s .= ' ' . file . ' '
+            "let i = i + 1
+        "endwhile
+        "let s .= '%T%#TabLineFill#%='
+        "let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+        "return s
+    "endfunction
+    "set stal=2
+    "set tabline=%!MyTabLine()
+    "set showtabline=1
+    "highlight link TabNum Special
+"endif
+
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>

@@ -187,3 +187,7 @@ if ! command -v tmux > /dev/null 2>&1; then
         * ) ;;
     esac
 fi
+
+sudo cp -rf prettyping.sh /usr/local/bin/pping
+sudo chmod +x /usr/local/bin/pping
+echo 'alias pping="pping"' >> ~/.zshrc

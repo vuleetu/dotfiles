@@ -34,6 +34,25 @@ if ! command -v http > /dev/null 2>&1; then
     esac
 fi
 
+if ! command -v storm > /dev/null 2>&1; then
+    echo -n "Install storm, A ~/.ssh/config manager tool(y/N)?"
+    read dyn
+    case $dyn in
+        [Yy]* )
+            #check if pip or easy_install installed
+            #sudo apt-get install python-setuptools
+            #easy_install httpie
+            if ! command -v pip > /dev/null 2>&1; then
+                sudo apt-get install python-pip
+            fi
+
+            echo "Installing storm"
+            sudo pip install --upgrade stormssh
+            ;;
+        * ) ;;
+    esac
+fi
+
 if ! command -v dstat > /dev/null 2>&1; then
     echo -n "Install dstat, a combine of iostat, vmstat and ifstat(y/N)?"
     read dyn
