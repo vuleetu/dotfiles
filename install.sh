@@ -73,6 +73,12 @@ if ! command -v gocode > /dev/null 2>&1; then
     echo "Installing gocode for golang auto complete feature"
     go get -u github.com/nsf/gocode
 fi
+
+if ! command -v gotags > /dev/null 2>&1; then
+    echo "Installing gotags for golang auto complete feature"
+    go get -u github.com/jstemmer/gotags
+fi
+
 # install nodejs
 if ! command -v node > /dev/null 2>&1; then
     echo "Installing nodejs, we will have realtime syntax report"
