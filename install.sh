@@ -7,29 +7,41 @@ wt=$PWD
 # command -v foo >/dev/null 2>&1
 # type foo >/dev/null 2>&1
 # hash foo 2>/dev/null
+if ! command -v brew > /dev/null 2>&1; then
+    echo "Installing homebrew"
+    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+fi
+
+#http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/
+#http://blog.bbkanba.com/配置linux下dircolorsls命令和mac下iterm2的颜色让终端iterm2或terminal也色彩/
+brew install xz coreutils
+
+cp dircolors.ansi-universal  ~/.dir_colors
+eval `dircolors ~/.dir_colors`
+
 if ! command -v vim > /dev/null 2>&1; then
     echo "Installing vim"
-    sudo apt-get install vim
+    brew install vim
 fi
 
 if ! command -v make > /dev/null 2>&1; then
     echo "Installing make"
-    sudo apt-get install make
+    brew install make
 fi
 
 if ! command -v git > /dev/null 2>&1; then
     echo "Installing git"
-    sudo apt-get install git
+    brew install git
 fi
 
 if ! command -v bzr > /dev/null 2>&1; then
     echo "Installing bzr"
-    sudo apt-get install bzr
+    brew install bzr
 fi
 
 if ! command -v wget > /dev/null 2>&1; then
     echo "Installing wget"
-    sudo apt-get install wget
+    brew install wget
 fi
 
 if ! command -v go > /dev/null 2>&1; then
@@ -53,12 +65,12 @@ if ! command -v go > /dev/null 2>&1; then
 fi
 
 if ! command -v lua > /dev/null 2>&1; then
-    sudo apt-get install lua5.2
+    brew install lua5.2
 fi
 
 if ! command -v curl > /dev/null 2>&1; then
     echo "Installing curl"
-    sudo apt-get install curl
+    brew install curl
 fi
 
 ##### VIM #####
@@ -76,12 +88,12 @@ fi
 # install nodejs
 if ! command -v node > /dev/null 2>&1; then
     echo "Installing nodejs, we will have realtime syntax report"
-    sudo apt-get install nodejs
+    brew install nodejs
 fi
 
 if ! command -v ctags > /dev/null 2>&1; then
     echo "Installing exuberant-ctags, we will have ctags command"
-    sudo apt-get install exuberant-ctags
+    brew install exuberant-ctags
 fi
 
 if [ -f ~/.vimrc ]; then
@@ -114,7 +126,7 @@ cp -rf ~/fonts/* ~/.fonts/
 echo "Generate fonts cache"
 if ! command -v fc-cache > /dev/null 2>&1; then
     echo "Installing fontconfig which contains fc-cache"
-    sudo apt-get install fontconfig
+    brew install fontconfig
 fi
 
 fc-cache -vf ~/.fonts
@@ -124,7 +136,7 @@ echo "You may need to change the fonts in terminal(use SourceCode-Pro)"
 #### ZSH ####
 if ! command -v zsh > /dev/null 2>&1; then
     echo "Installing zsh"
-    sudo apt-get install zsh
+    brew install zsh
 fi
 
 if [ ! -d ~/.oh-my-zsh ]; then
@@ -181,13 +193,13 @@ if ! command -v tmux > /dev/null 2>&1; then
     case $dyn in
         [Yy]* )
             echo "Installing tmux"
-            sudo apt-get install tmux
+            brew install tmux
             echo 'alias tmux="tmux -2"' >> ~/.zshrc
             ;;
         * ) ;;
     esac
 fi
 
-sudo cp -rf prettyping.sh /usr/local/bin/pping
-sudo chmod +x /usr/local/bin/pping
+cp -rf prettyping.sh /usr/local/bin/pping
+chmod +x /usr/local/bin/pping
 echo 'alias pping="pping"' >> ~/.zshrc

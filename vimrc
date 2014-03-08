@@ -28,7 +28,8 @@ Bundle "vim-scripts/DrawIt"
 ""easy-motion
 "Bundle "Lokaltog/vim-easymotion"
 ""Status bar
-Bundle "Lokaltog/vim-powerline"
+"Bundle "Lokaltog/powerline", {'rtp': 'powerline/bindings/vim'}
+Bundle "bling/vim-airline"
 ""Markdown
 Bundle "plasticboy/vim-markdown"
 ""Better number control
@@ -106,7 +107,7 @@ Bundle "Shougo/vimfiler"
 ""outline
 Bundle "h1mesuke/unite-outline"
 ""Indent guide
-Bundle "mutewinter/vim-indent-guides"
+Bundle "nathanaelkane/vim-indent-guides"
 ""unimpaired
 Bundle "tpope/vim-unimpaired"
 ""search and substitute
@@ -151,6 +152,7 @@ Bundle "taglist.vim"
 ""Colorscheme
 Bundle "vim-scripts/xoria256.vim"
 Bundle "altercation/vim-colors-solarized"
+"Bundle "altercation/solarized", {'rtp': 'vim-colors-solarized'}
 Bundle "Lucius"
 Bundle "tomasr/molokai"
 Bundle "pyte"
@@ -179,13 +181,23 @@ Bundle "jgdavey/vim-railscasts"
 "let g:SuperTabMappingBackward="<s-c-Tab>"
 
 filetype plugin indent on     " required!
+syntax enable
 
-if has('gui_running')
-    set background=light
-else
-    set background=dark
-endif
+"if !has('gui_running')
+    "" Compatibility for Terminal
+    "let g:solarized_termtrans=1
+
+    "if (&t_Co >= 256 || $TERM == 'xterm-256color')
+        "" Do nothing, it handles itself.
+    "else
+        "" Make Solarized use 16 colors for Terminal support
+        "let g:solarized_termcolors=16
+    "endif
+"endif
+
+set background=dark
 colorscheme solarized
+
 
 set encoding=utf-8
 set winaltkeys=no
@@ -379,11 +391,13 @@ let NERDTreeWinPos = "right"
 let NERDTreeMinimalUI = 1
 let NERDTreeWinSize = 38
 
-"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-let g:Powerline_symbols = 'fancy'
-"change the terminal fonts to SourceCode-Pro
-"if the symblo in powerline is strange, run the following commnd
-" :PowerlineClearCache
+""set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+"let g:Powerline_symbols = 'fancy'
+""change the terminal fonts to SourceCode-Pro
+""if the symblo in powerline is strange, run the following commnd
+"" :PowerlineClearCache
+
+let g:airline_powerline_fonts = 1
 
 "lua
 let g:lua_complete_omni = 1
@@ -461,3 +475,7 @@ function! AppendModeline()
   call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
+syntax on
+
+"set guifont=Source\ Code\ Pro\ for\ Powerline
