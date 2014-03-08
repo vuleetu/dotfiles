@@ -7,17 +7,16 @@ wt=$PWD
 # command -v foo >/dev/null 2>&1
 # type foo >/dev/null 2>&1
 # hash foo 2>/dev/null
+echo "Creating ~/Resources/ folder for data storage"
+mkdir ~/Resources
+
 if ! command -v brew > /dev/null 2>&1; then
     echo "Installing homebrew"
     ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 fi
 
-#http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/
-#http://blog.bbkanba.com/配置linux下dircolorsls命令和mac下iterm2的颜色让终端iterm2或terminal也色彩/
-brew install xz coreutils
-
-cp dircolors.ansi-universal  ~/.dir_colors
-eval `dircolors ~/.dir_colors`
+echo "Updateing homebrew source list"
+brew update
 
 if ! command -v vim > /dev/null 2>&1; then
     echo "Installing vim"
@@ -47,31 +46,29 @@ fi
 if ! command -v go > /dev/null 2>&1; then
     if [ ! -f ~/download/go/bin/go ]; then
         echo "Installing golang"
-        mkdir -p ~/download/
-        mkdir -p ~/project/
-        wget -O ~/download/go1.1.2.src.tar.gz http://go.googlecode.com/files/go1.1.2.src.tar.gz
-        cd ~/download/ && tar zxvf go1.1.2.src.tar.gz && cd go/src && ./all.bash
+        wget -O ~/Downloads/go1.2.1.darwin-amd64-osx10.8.pkg https://go.googlecode.com/files/go1.2.1.darwin-amd64-osx10.8.pkg
+        echo "Please double click go1.2.1.darwin-amd64-osx10.8.pkg to install golang"
+        #installer -pkg ~/Downloads/go1.2.1.darwin-amd64-osx10.8.pkg
     fi
 
     if [ ! -f $wt/env.sh ]; then
-        echo "export GOROOT=~/download/go" >> $wt/env.sh
-        echo "export GOPATH=~/project" >> $wt/env.sh
-        echo "export GOBIN=\$GOROOT/bin" >> $wt/env.sh
-        echo "export PATH=\$PATH:\$GOROOT/bin" >> $wt/env.sh
+        echo "GOBIN=/Users/fisheryu/go/bin" >> $wt/env.sh
+        echo "GOPATH=/Users/fisheryu/go/mygo" >> $wt/env.sh
+        echo "export PATH=\$PATH:/usr/local/go/bin:\$GOBIN" >> $wt/env.sh
     fi
 
     echo "reload ./env.sh"
     source $wt/env.sh
 fi
 
-if ! command -v lua > /dev/null 2>&1; then
-    brew install lua5.2
-fi
+#if ! command -v lua > /dev/null 2>&1; then
+    #brew install lua5.2
+#fi
 
-if ! command -v curl > /dev/null 2>&1; then
-    echo "Installing curl"
-    brew install curl
-fi
+#if ! command -v curl > /dev/null 2>&1; then
+    #echo "Installing curl"
+    #brew install curl
+#fi
 
 ##### VIM #####
 # install vundle
@@ -91,10 +88,10 @@ if ! command -v node > /dev/null 2>&1; then
     brew install nodejs
 fi
 
-if ! command -v ctags > /dev/null 2>&1; then
-    echo "Installing exuberant-ctags, we will have ctags command"
-    brew install exuberant-ctags
-fi
+#if ! command -v ctags > /dev/null 2>&1; then
+    #echo "Installing exuberant-ctags, we will have ctags command"
+    #brew install exuberant-ctags
+#fi
 
 if [ -f ~/.vimrc ]; then
     echo "Backup ~/.vimrc to ~/.vimrc.bbk"
@@ -108,36 +105,39 @@ ln $wt/vimrc ~/.vimrc
 echo "Installing vim plugins via vundle"
 vim +BundleInstall +qall
 
-echo "Updating gocode"
-cd ~/.vim/bundle/gocode/vim && ./update.sh
+#echo "Updating gocode"
+#cd ~/.vim/bundle/gocode/vim && ./update.sh
 
 #### FONTS PATCH #####
 # so we can use powerline-fonts for vim and zshrc
 echo "Patch fonts"
 if [ ! -d ~/fonts ]; then
-    git clone https://github.com/Lokaltog/powerline-fonts.git ~/fonts
+    git clone https://github.com/Lokaltog/powerline-fonts.git ~/Resources/powerline-fonts
 fi
 
-if [ ! -d ~/.fonts ]; then
-    mkdir -p ~/.fonts
-fi
+echo "Please install fonts one by one manually"
 
-cp -rf ~/fonts/* ~/.fonts/
-echo "Generate fonts cache"
-if ! command -v fc-cache > /dev/null 2>&1; then
-    echo "Installing fontconfig which contains fc-cache"
-    brew install fontconfig
-fi
+#if [ ! -d ~/.fonts ]; then
+    #mkdir -p ~/.fonts
+#fi
 
-fc-cache -vf ~/.fonts
+#cp -rf ~/fonts/* ~/.fonts/
+#echo "Generate fonts cache"
+#if ! command -v fc-cache > /dev/null 2>&1; then
+    #echo "Installing fontconfig which contains fc-cache"
+    #brew install fontconfig
+#fi
+
+#fc-cache -vf ~/.fonts
 #config the terminal to use SourceCode-Pro font(my prefered font)
 echo "You may need to change the fonts in terminal(use SourceCode-Pro)"
 
 #### ZSH ####
-if ! command -v zsh > /dev/null 2>&1; then
+#if ! command -v zsh > /dev/null 2>&1; then
     echo "Installing zsh"
     brew install zsh
-fi
+    echo "Please specifing the /usr/local/bin/zsh as the start shell for terminal.app preference"
+#fi
 
 if [ ! -d ~/.oh-my-zsh ]; then
     echo "Installing oh-my-zsh"
@@ -146,21 +146,22 @@ fi
 
 if [ ! -d ~/.oh-my-zsh/powerline-shell ]; then
     echo "Installing powerline-shell for zsh"
-    git clone https://github.com/milkbikis/powerline-shell ~/.oh-my-zsh/powerline-shell
-    cd ~/.oh-my-zsh/powerline-shell && ./install.py
+    git clone https://github.com/milkbikis/powerline-shell ~/Resources/powerline-shell
+    cd ~/Resources/powerline-shell && ./install.py
 
     if [ -f ~/powerline-shell.py ]; then
         echo "Replace ~/powerline-shell.py with new one"
     fi
 
-    ln ~/.oh-my-zsh/powerline-shell/powerline-shell.py ~/powerline-shell.py
+    ln ~/Resources/powerline-shell/powerline-shell.py ~/powerline-shell.py
+
 fi
 
 if ! command -v autojump > /dev/null 2>&1; then
-    if [ ! -d $wt/autojump ]; then
+    if [ ! -d ~/Resources/autojump ]; then
         echo "Installing autojump"
-        git clone git://github.com/joelthelion/autojump.git $wt/autojump
-        cd $wt/autojump && ./install.sh
+        git clone git://github.com/joelthelion/autojump.git ~/Resources/autojump
+        cd ~/Resources/autojump && ./install.sh
     fi
 fi
 
@@ -173,6 +174,20 @@ echo "Link to ~/.zshrc"
 ln $wt/zshrc ~/.zshrc
 echo "Changing shell"
 chsh -s /bin/zsh
+
+#https://github.com/tamul/solarized-osx-terminal-colors.git
+git clone https://github.com/tamul/solarized-osx-terminal-colors.git ~/Resources/solarized-osx-terminal-colors
+echo "Please install solarized-dark theme as terminal.app default, and change the font to SourceCode-Pro"
+
+echo "Installing GNU tools(ls, dir), which support colorfull text output in terminal"
+#http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/
+#http://blog.bbkanba.com/配置linux下dircolorsls命令和mac下iterm2的颜色让终端iterm2或terminal也色彩/
+brew install xz coreutils
+
+#https://github.com/seebi/dircolors-solarized/raw/master/dircolors.ansi-universal
+cp dircolors.ansi-universal  ~/.dir_colors
+#set LS_COLOR env
+eval `dircolors ~/.dir_colors`
 
 # install mostlike which support color for man page
 if [ ! -f ~/.terminfo/mostlike.txt ]; then
