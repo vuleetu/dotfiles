@@ -59,6 +59,7 @@ Bundle "xolox/vim-misc"
 Bundle "xolox/vim-lua-ftplugin"
 "snippet
 Bundle "SirVer/ultisnips"
+Bundle 'honza/vim-snippets'
 "vimwiki
 Bundle "vim-scripts/vimwiki"
 "voom Vim Outliner of Markers
@@ -229,6 +230,7 @@ set showmode
 set wildmenu
 set t_Co=256
 set switchbuf=usetab
+set backspace=2
 "let g:pad_dir="/home/fisher/notepad"
 
 "自动进入上次退出时候的光标位置
@@ -404,6 +406,7 @@ let g:lua_complete_omni = 1
 
 command W w !sudo tee % > /dev/null
 
+let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
