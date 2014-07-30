@@ -40,8 +40,10 @@ Bundle "skammer/vim-css-color"
 "Bundle "jnwhiteh/vim-golang"
 ""go get -u github.com/nsf/gocode
 ""cd .vim/bundle/gocode/vim && ./update.bash
-Bundle "fatih/vim-go"
 "Bundle "nsf/gocode", {'rtp': 'vim/'}
+"Modify the go.vim file under ~/.vim/bundle/vim-go/ftplugin/go.vim
+" comment  "setlocal noexpandtab
+Bundle "fatih/vim-go"
 ""vimtips plugin
 Bundle "vim-scripts/Fortune-vimtips"
 "Bundle "vim-scripts/vim-pad"
