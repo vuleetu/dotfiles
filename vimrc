@@ -26,7 +26,7 @@ Bundle "vim-scripts/L9"
 ""Drawit
 Bundle "vim-scripts/DrawIt"
 ""easy-motion
-"Bundle "Lokaltog/vim-easymotion"
+Bundle "Lokaltog/vim-easymotion"
 ""Status bar
 "Bundle "Lokaltog/powerline", {'rtp': 'powerline/bindings/vim'}
 Bundle "bling/vim-airline"
@@ -37,10 +37,11 @@ Bundle "myusuf3/numbers.vim"
 ""Highlighting css color
 Bundle "skammer/vim-css-color"
 ""Golang
-Bundle "jnwhiteh/vim-golang"
-"go get -u github.com/nsf/gocode
-"cd .vim/bundle/gocode/vim && ./update.bash
-Bundle "nsf/gocode", {'rtp': 'vim/'}
+"Bundle "jnwhiteh/vim-golang"
+""go get -u github.com/nsf/gocode
+""cd .vim/bundle/gocode/vim && ./update.bash
+Bundle "fatih/vim-go"
+"Bundle "nsf/gocode", {'rtp': 'vim/'}
 ""vimtips plugin
 Bundle "vim-scripts/Fortune-vimtips"
 "Bundle "vim-scripts/vim-pad"
@@ -77,6 +78,8 @@ Bundle "mattn/webapi-vim"
 Bundle "mattn/gist-vim"
 ""git
 Bundle "tpope/vim-fugitive"
+"Gitdiff info
+Bundle "airblade/vim-gitgutter"
 ""indent object
 Bundle "michaeljsmith/vim-indent-object"
 "Splitjoin
@@ -84,7 +87,7 @@ Bundle "AndrewRadev/splitjoin.vim"
 "multiple cursors
 Bundle "terryma/vim-multiple-cursors"
 "yankring
-Bundle "vim-scripts/YankRing.vim"
+"Bundle "vim-scripts/YankRing.vim"
 "text object for argument
 Bundle "argtextobj.vim"
 ""auto-complete for quote
@@ -102,6 +105,8 @@ Bundle "bkad/CamelCaseMotion"
 "Bundle "garbas/vim-snipmate"
 ""SuperTab
 "Bundle "ervandew/supertab"
+"AutoClose
+Bundle "Townk/vim-autoclose"
 ""vimfiler, let you manage file in vim
 Bundle "Shougo/unite.vim"
 Bundle "Shougo/vimfiler"
@@ -133,7 +138,7 @@ Bundle "ZoomWin"
 "Bundle "spolu/dwm.vim"
 ""Match Tag
 Bundle "gregsexton/MatchTag"
-""tagbar
+"""tagbar
 Bundle "majutsushi/tagbar"
 ""Jslint
 ""sudo apt-get install node.js first
@@ -269,10 +274,10 @@ noremap <leader>;= :Tabularize /;/r1c1l0<CR>
 nnoremap <silent> <F4> :GundoToggle<CR>
 
 "yankring
-nnoremap <silent> <F9> :YRShow<CR>
-function! YRRunAfterMaps()
-    nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
-endfunction
+"nnoremap <silent> <F9> :YRShow<CR>
+"function! YRRunAfterMaps()
+    "nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
+"endfunction
 
 "taglist
 nnoremap <silent> <F8> :TlistToggle<CR>
@@ -285,33 +290,38 @@ let g:nrrw_topbot_leftright = 'botright'
 "Tagbar设置
 nnoremap <silent> <F7> :TagbarToggle<CR>
 
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
+"let g:tagbar_type_go = {
+    "\ 'ctagstype' : 'go',
+    "\ 'kinds'     : [
+        "\ 'p:package',
+        "\ 'i:imports:1',
+        "\ 'c:constants',
+        "\ 'v:variables',
+        "\ 't:types',
+        "\ 'n:interfaces',
+        "\ 'w:fields',
+        "\ 'e:embedded',
+        "\ 'm:methods',
+        "\ 'r:constructor',
+        "\ 'f:functions'
+    "\ ],
+    "\ 'sro' : '.',
+    "\ 'kind2scope' : {
+        "\ 't' : 'ctype',
+        "\ 'n' : 'ntype'
+    "\ },
+    "\ 'scope2kind' : {
+        "\ 'ctype' : 't',
+        "\ 'ntype' : 'n'
+    "\ },
+    "\ 'ctagsbin'  : 'gotags',
+    "\ 'ctagsargs' : '-sort -silent'
+"\ }
+
+let g:go_fmt_autosave = 0
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap gd <Plug>(go-def-vertical)
+au FileType go nmap <Leader>i <Plug>(go-info)
 
 "Command-T setting
 "nnoremap <silent> <Leader>ct :CommandT<CR>
@@ -482,3 +492,5 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 syntax on
 
 "set guifont=Source\ Code\ Pro\ for\ Powerline
+au FileType yaml setl ts=2
+highlight clear SignColumn
