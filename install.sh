@@ -227,3 +227,14 @@ fi
 cp -rf prettyping.sh /usr/local/bin/pping
 chmod +x /usr/local/bin/pping
 echo 'alias pping="pping"' >> ~/.zshrc
+
+#other
+#pssh, execute work at multi host at the same time
+#usage: pssh -v -i -H "qcloud1 qcloud2" echo "hello world"
+brew install pssh
+
+#storm to manage ssh config file
+#https://linuxtoy.org/archives/storm.html
+pip install stormssh
+#fix pip distribution issue
+sudo pip install --upgrade distribute
