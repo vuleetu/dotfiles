@@ -197,3 +197,7 @@ fi
 sudo cp -rf prettyping.sh /usr/local/bin/pping
 sudo chmod +x /usr/local/bin/pping
 echo 'alias pping="pping"' >> ~/.zshrc
+
+
+#chroot related standlone static linux commonds suits
+sudo apt-get instal busybox-static
