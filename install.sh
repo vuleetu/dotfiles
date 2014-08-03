@@ -200,4 +200,6 @@ echo 'alias pping="pping"' >> ~/.zshrc
 
 
 #chroot related standlone static linux commonds suits
-sudo apt-get instal busybox-static
+#sudo apt-get instal busybox-static
+#ln –s busybox ash
+#chroot . /bin/ash
