@@ -45,13 +45,12 @@ ZSH_THEME="afowler"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git svn autojump history go docker vagrant brew)
+plugins=(git svn autojump history go docker vagrant brew brew-cask git-flow redis-cli tmux)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/go/bin:/Users/fisheryu/go/bin"
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin:/Users/fisheryu/go/bin"
 export GOPATH="/Users/fisheryu/go/mygo"
 export GOBIN="/Users/fisheryu/go/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -98,3 +97,5 @@ if brew list | grep coreutils > /dev/null ; then
   alias ls='ls -F --show-control-chars --color=auto'
   eval `gdircolors -b $HOME/.dir_colors`
 fi
+
+export EDITOR=vim
