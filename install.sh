@@ -33,6 +33,13 @@ if ! command -v git > /dev/null 2>&1; then
     brew install git
 fi
 
+git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+
+if ! command -v tig > /dev/null 2>&1; then
+    echo "Installing tig, a text-mode interface for git"
+    brew install tig
+fi
+
 if ! command -v bzr > /dev/null 2>&1; then
     echo "Installing bzr"
     brew install bzr
