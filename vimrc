@@ -41,8 +41,6 @@ Bundle "skammer/vim-css-color"
 ""go get -u github.com/nsf/gocode
 ""cd .vim/bundle/gocode/vim && ./update.bash
 "Bundle "nsf/gocode", {'rtp': 'vim/'}
-"Modify the go.vim file under ~/.vim/bundle/vim-go/ftplugin/go.vim
-" comment  "setlocal noexpandtab
 Bundle "fatih/vim-go"
 ""vimtips plugin
 Bundle "vim-scripts/Fortune-vimtips"
@@ -108,7 +106,7 @@ Bundle "bkad/CamelCaseMotion"
 ""SuperTab
 "Bundle "ervandew/supertab"
 "AutoClose
-Bundle "Townk/vim-autoclose"
+"Bundle "Townk/vim-autoclose"
 ""vimfiler, let you manage file in vim
 Bundle "Shougo/unite.vim"
 Bundle "Shougo/vimfiler"
@@ -426,6 +424,8 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 nmap <F1> <nop>
 imap <F1> <nop>
 let g:dwm_map_keys=1
+
+let g:gitgutter_max_signs=2000
 
 "let g:AutoComplPop_Behavior = {
 "\ 'c': [ {'command' : "\<C-x>\<C-o>",
