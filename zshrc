@@ -99,3 +99,4 @@ if brew list | grep coreutils > /dev/null ; then
 fi
 
 export EDITOR=vim
+source /Users/fisheryu/go/mygo/src/golang-crosscompile/crosscompile.bash
