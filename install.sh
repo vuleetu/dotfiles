@@ -40,6 +40,11 @@ if ! command -v tig > /dev/null 2>&1; then
     brew install tig
 fi
 
+if ! command -v colordiff > /dev/null 2>&1; then
+    echo "Installing colordiff"
+    brew install colordiff
+fi
+
 if ! command -v bzr > /dev/null 2>&1; then
     echo "Installing bzr"
     brew install bzr
