@@ -20,7 +20,7 @@ Bundle "sudo.vim"
 "Bundle "sessionman.vim"
 ""erlang
 Bundle "oscarh/vimerl"
-Bundle "aerosol/vim-erlang-skeletons"
+"Bundle "aerosol/vim-erlang-skeletons"
 ""L9 library
 Bundle "vim-scripts/L9"
 ""Drawit
@@ -70,7 +70,10 @@ Bundle "vim-scripts/VOoM"
 "AutoComplPop
 "Bundle "vim-scripts/AutoComplPop"
 "html fast coding
-Bundle "mattn/zencoding-vim"
+"Moved to emmet-vim
+"Bundle "mattn/zencoding-vim"
+Bundle "mattn/emmet-vim"
+
 "cocoa
 Bundle "msanders/cocoa.vim"
 "gist.github.com
@@ -94,6 +97,8 @@ Bundle "argtextobj.vim"
 Bundle "Raimondi/delimitMate"
 ""mustache template
 Bundle "juvenn/mustache.vim"
+"Python
+Bundle "klen/python-mode"
 ""CamelCaseMotion
 Bundle "bkad/CamelCaseMotion"
 ""Gold ratio
@@ -416,10 +421,11 @@ let g:lua_complete_omni = 1
 
 command W w !sudo tee % > /dev/null
 
-let g:UltiSnipsUsePythonVersion = 2
+let g:UltiSnipsUsePythonVersion = 3
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:pymode_lint_signs = 0
 
 nmap <F1> <nop>
 imap <F1> <nop>
@@ -479,6 +485,11 @@ let g:gitgutter_max_signs=2000
     "set showtabline=1
     "highlight link TabNum Special
 "endif
+
+"Python
+let g:pymode_python = 'python3'
+let g:pymode_folding = 0
+let g:pymode_options_max_line_length = 0
 
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX

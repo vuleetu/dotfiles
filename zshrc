@@ -45,7 +45,7 @@ ZSH_THEME="afowler"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git svn autojump history go docker vagrant brew brew-cask git-flow redis-cli tmux)
+plugins=(git svn autojump history go docker vagrant brew brew-cask git-flow redis-cli tmux python rsync pip)
 
 source $ZSH/oh-my-zsh.sh
 
