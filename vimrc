@@ -1,185 +1,192 @@
-set nocompatible               " be iMproved
-filetype off                   " required!
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 
-"自定义插件
-Bundle "Shougo/neocomplcache"
+Plugin 'Shougo/neocomplcache'
 ""NerdTree
-Bundle "scrooloose/nerdtree"
+Plugin 'scrooloose/nerdtree'
 ""NerdCommenter
-Bundle "scrooloose/nerdcommenter"
+Plugin 'scrooloose/nerdcommenter'
 ""Sudo plugin
-Bundle "sudo.vim"
+Plugin 'sudo.vim'
 ""Session manager
-"Bundle "sessionman.vim"
+"Plugin 'sessionman.vim'
 ""erlang
-Bundle "oscarh/vimerl"
-"Bundle "aerosol/vim-erlang-skeletons"
+Plugin 'oscarh/vimerl'
+"Plugin 'aerosol/vim-erlang-skeletons'
 ""L9 library
-Bundle "vim-scripts/L9"
+Plugin 'vim-scripts/L9'
 ""Drawit
-Bundle "vim-scripts/DrawIt"
+Plugin 'vim-scripts/DrawIt'
 ""easy-motion
-Bundle "Lokaltog/vim-easymotion"
+Plugin 'Lokaltog/vim-easymotion'
 ""Status bar
-"Bundle "Lokaltog/powerline", {'rtp': 'powerline/bindings/vim'}
-Bundle "bling/vim-airline"
+"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
+Plugin 'bling/vim-airline'
 ""Markdown
-Bundle "plasticboy/vim-markdown"
+Plugin 'plasticboy/vim-markdown'
 ""Better number control
-Bundle "myusuf3/numbers.vim"
+Plugin 'myusuf3/numbers.vim'
 ""Highlighting css color
-Bundle "skammer/vim-css-color"
+Plugin 'skammer/vim-css-color'
 ""Golang
-"Bundle "jnwhiteh/vim-golang"
+"Plugin 'jnwhiteh/vim-golang'
 ""go get -u github.com/nsf/gocode
 ""cd .vim/bundle/gocode/vim && ./update.bash
-"Bundle "nsf/gocode", {'rtp': 'vim/'}
-Bundle "fatih/vim-go"
+"Plugin 'nsf/gocode", {'rtp': 'vim/'}
+Plugin 'fatih/vim-go'
 ""vimtips plugin
-Bundle "vim-scripts/Fortune-vimtips"
-"Bundle "vim-scripts/vim-pad"
+Plugin 'vim-scripts/Fortune-vimtips'
+"Plugin 'vim-scripts/vim-pad'
 "moonscript support
-Bundle "leafo/moonscript-vim"
+Plugin 'leafo/moonscript-vim'
 ""indent manually
-Bundle "godlygeek/tabular"
+Plugin 'godlygeek/tabular'
 ""visual undo plugin
-Bundle "sjl/gundo.vim"
+Plugin 'sjl/gundo.vim'
 ""powerfull finder
-Bundle "FuzzyFinder"
+Plugin 'FuzzyFinder'
 ""project plugin
-Bundle "project.tar.gz"
+Plugin 'project.tar.gz'
 "lua
-Bundle "xolox/vim-misc"
-Bundle "xolox/vim-lua-ftplugin"
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-lua-ftplugin'
 "snippet
-Bundle "SirVer/ultisnips"
-Bundle 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 "vimwiki
-Bundle "vim-scripts/vimwiki"
+Plugin 'vim-scripts/vimwiki'
 "voom Vim Outliner of Markers
-Bundle "vim-scripts/VOoM"
+Plugin 'vim-scripts/VOoM'
 "prompt function proto for c/c++
-"Bundle "mbbill/echofunc"
+"Plugin 'mbbill/echofunc'
 "AutoComplPop
-"Bundle "vim-scripts/AutoComplPop"
+"Plugin 'vim-scripts/AutoComplPop'
 "html fast coding
 "Moved to emmet-vim
-"Bundle "mattn/zencoding-vim"
-Bundle "mattn/emmet-vim"
+"Plugin 'mattn/zencoding-vim'
+Plugin 'mattn/emmet-vim'
 
 "cocoa
-Bundle "msanders/cocoa.vim"
+Plugin 'msanders/cocoa.vim'
 "gist.github.com
-Bundle "mattn/webapi-vim"
-Bundle "mattn/gist-vim"
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
 ""git
-Bundle "tpope/vim-fugitive"
+Plugin 'tpope/vim-fugitive'
 "Gitdiff info
-Bundle "airblade/vim-gitgutter"
+Plugin 'airblade/vim-gitgutter'
 ""indent object
-Bundle "michaeljsmith/vim-indent-object"
+Plugin 'michaeljsmith/vim-indent-object'
 "Splitjoin
-Bundle "AndrewRadev/splitjoin.vim"
+Plugin 'AndrewRadev/splitjoin.vim'
 "multiple cursors
-Bundle "terryma/vim-multiple-cursors"
+Plugin 'terryma/vim-multiple-cursors'
 "yankring
-"Bundle "vim-scripts/YankRing.vim"
+"Plugin 'vim-scripts/YankRing.vim'
 "text object for argument
-Bundle "argtextobj.vim"
+Plugin 'argtextobj.vim'
 ""auto-complete for quote
-Bundle "Raimondi/delimitMate"
+Plugin 'Raimondi/delimitMate'
 ""mustache template
-Bundle "juvenn/mustache.vim"
+Plugin 'juvenn/mustache.vim'
 "Python
-Bundle "klen/python-mode"
+Plugin 'klen/python-mode'
 ""CamelCaseMotion
-Bundle "bkad/CamelCaseMotion"
+Plugin 'bkad/CamelCaseMotion'
 ""Gold ratio
-"Bundle "roman/golden-ratio"
+"Plugin 'roman/golden-ratio'
 ""Snippets
-"Bundle "MarcWeber/vim-addon-mw-utils"
-"Bundle "tomtom/tlib_vim"
-"Bundle "honza/snipmate-snippets"
-"Bundle "garbas/vim-snipmate"
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'tomtom/tlib_vim'
+"Plugin 'honza/snipmate-snippets'
+"Plugin 'garbas/vim-snipmate'
 ""SuperTab
-"Bundle "ervandew/supertab"
+"Plugin 'ervandew/supertab'
 "AutoClose
-"Bundle "Townk/vim-autoclose"
+"Plugin 'Townk/vim-autoclose'
 ""vimfiler, let you manage file in vim
-Bundle "Shougo/unite.vim"
-Bundle "Shougo/vimfiler"
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimfiler'
 ""outline
-Bundle "h1mesuke/unite-outline"
+Plugin 'h1mesuke/unite-outline'
 ""Indent guide
-Bundle "nathanaelkane/vim-indent-guides"
+Plugin 'nathanaelkane/vim-indent-guides'
 ""unimpaired
-Bundle "tpope/vim-unimpaired"
+Plugin 'tpope/vim-unimpaired'
 ""search and substitute
-Bundle "tpope/vim-abolish"
+Plugin 'tpope/vim-abolish'
 "grep, fgrep
-Bundle "yegappan/grep"
+Plugin 'yegappan/grep'
 ""text object for column
-Bundle "coderifous/textobj-word-column.vim"
+Plugin 'coderifous/textobj-word-column.vim'
 ""surround
-Bundle "tpope/vim-surround"
+Plugin 'tpope/vim-surround'
 ""Align
-Bundle "tsaleh/vim-align"
+Plugin 'tsaleh/vim-align'
 ""syntastic
-Bundle "scrooloose/syntastic"
+Plugin 'scrooloose/syntastic'
 ""zoomwin
-Bundle "ZoomWin"
+Plugin 'ZoomWin'
 ""Command-T
 " Install ruby-dev first !important
 " Then go to Command-T/ruby/command-t/, run: ruby extconf.rb && make
-"Bundle "wincent/Command-T"
+"Plugin 'wincent/Command-T'
 "Organize window
-"Bundle "spolu/dwm.vim"
+"Plugin 'spolu/dwm.vim'
 ""Match Tag
-Bundle "gregsexton/MatchTag"
+Plugin 'gregsexton/MatchTag'
 """tagbar
-Bundle "majutsushi/tagbar"
+Plugin 'majutsushi/tagbar'
 ""Jslint
 ""sudo apt-get install node.js first
-Bundle "hallettj/jslint.vim"
+Plugin 'hallettj/jslint.vim'
 ""Highlight multi words in different colors
-Bundle "Mark--Karkat"
+Plugin 'Mark--Karkat'
 ""Multi search
-Bundle "multisearch.vim"
+Plugin 'multisearch.vim'
 ""Conque execute external program
-"Bundle "Conque-Shell"
+"Plugin 'Conque-Shell'
 ""haml
-Bundle "tpope/vim-haml"
+Plugin 'tpope/vim-haml'
 ""Narrow region
-Bundle "chrisbra/NrrwRgn"
+Plugin 'chrisbra/NrrwRgn'
 ""taglist
-Bundle "taglist.vim"
+Plugin 'taglist.vim'
 ""Colorscheme
-Bundle "vim-scripts/xoria256.vim"
-Bundle "altercation/vim-colors-solarized"
-"Bundle "altercation/solarized", {'rtp': 'vim-colors-solarized'}
-Bundle "Lucius"
-Bundle "tomasr/molokai"
-Bundle "pyte"
-Bundle "Zenburn"
-Bundle "oceandeep"
-Bundle "Ambient-Color-Scheme"
-Bundle "Liquid-Carbon"
-Bundle "rslate"
-Bundle "tpope/vim-vividchalk"
-Bundle "wgibbs/vim-irblack"
-Bundle "chriskempson/tomorrow-theme", {'rtp': 'vim/'}
-Bundle "sjl/badwolf"
-Bundle "Wombat"
-Bundle "croaker/mustang-vim"
-Bundle "candycode.vim"
-Bundle "jgdavey/vim-railscasts"
+Plugin 'vim-scripts/xoria256.vim'
+Plugin 'altercation/vim-colors-solarized'
+"Plugin 'altercation/solarized', {'rtp': 'vim-colors-solarized'}
+Plugin 'Lucius'
+Plugin 'tomasr/molokai'
+Plugin 'pyte'
+Plugin 'Zenburn'
+Plugin 'oceandeep'
+Plugin 'Ambient-Color-Scheme'
+Plugin 'Liquid-Carbon'
+Plugin 'rslate'
+Plugin 'tpope/vim-vividchalk'
+Plugin 'wgibbs/vim-irblack'
+Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plugin 'sjl/badwolf'
+Plugin 'Wombat'
+Plugin 'croaker/mustang-vim'
+Plugin 'candycode.vim'
+Plugin 'jgdavey/vim-railscasts'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+syntax enable
 
 "SuperTab config
 "let g:SuperTabRetainCompletionType=2
@@ -191,8 +198,6 @@ Bundle "jgdavey/vim-railscasts"
 "let g:SuperTabMappingForward="<c-Tab>" 
 "let g:SuperTabMappingBackward="<s-c-Tab>"
 
-filetype plugin indent on     " required!
-syntax enable
 
 "if !has('gui_running')
     "" Compatibility for Terminal

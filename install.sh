@@ -250,3 +250,7 @@ brew install pssh
 pip install stormssh
 #fix pip distribution issue
 sudo pip install --upgrade distribute
+
+#Funny tool which convert character to graphic
+pip install figlet
+pip install toilet
