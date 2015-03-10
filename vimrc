@@ -409,6 +409,12 @@ let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_enable_auto_select=1
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
+"设置golang的neocomplcache完成
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+"let g:neocomplcache_omni_functions.go='go#complete#Complete'
+let g:neocomplcache_omni_patterns.go='\h\w*\.'
 
 "NerdTree设置
 nnoremap <silent> <F5> :NERDTreeToggle<CR>
