@@ -10,7 +10,11 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+"Autocomplete when type in insert mode
 Plugin 'Shougo/neocomplcache'
+"vim shell
+Plugin 'Shougo/vimproc'
+Plugin 'Shougo/vimshell.vim'
 ""NerdTree
 Plugin 'scrooloose/nerdtree'
 ""NerdCommenter
@@ -274,6 +278,7 @@ noremap <leader>rc :tabe $MYVIMRC<CR>
 
 "Tabular setting
 noremap <leader>, :Tabularize /,<CR>
+noremap <leader>s :Tabularize / /l0<CR>
 noremap <leader>,= :Tabularize /,/r1c1l0<CR>
 noremap <leader>= :Tabularize /=<CR>
 noremap <leader>== :Tabularize /=/r1c1l0<CR>
@@ -507,6 +512,9 @@ function! AppendModeline()
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
+"Move in insert mode
+inoremap <C-H> <C-\><C-O>b
+inoremap <C-L> <C-\><C-O>w
 syntax on
 
 "set guifont=Source\ Code\ Pro\ for\ Powerline
