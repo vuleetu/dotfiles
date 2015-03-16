@@ -53,7 +53,12 @@ Plugin 'vim-scripts/Fortune-vimtips'
 "moonscript support
 Plugin 'leafo/moonscript-vim'
 ""indent manually
-Plugin 'godlygeek/tabular'
+"Plugin 'godlygeek/tabular'
+"enable repeating supported plugin maps with ".""
+Plugin 'tpope/vim-repeat'
+Plugin 'vim-scripts/visualrepeat'
+"easy align
+Plugin 'junegunn/vim-easy-align'
 ""visual undo plugin
 Plugin 'sjl/gundo.vim'
 ""powerfull finder
@@ -185,6 +190,7 @@ Plugin 'Wombat'
 Plugin 'croaker/mustang-vim'
 Plugin 'candycode.vim'
 Plugin 'jgdavey/vim-railscasts'
+Plugin 'nanotech/jellybeans.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -277,13 +283,21 @@ let g:gist_get_multiplefile = 1
 noremap <leader>rc :tabe $MYVIMRC<CR>
 
 "Tabular setting
-noremap <leader>, :Tabularize /,<CR>
-noremap <leader>s :Tabularize / /l0<CR>
-noremap <leader>,= :Tabularize /,/r1c1l0<CR>
-noremap <leader>= :Tabularize /=<CR>
-noremap <leader>== :Tabularize /=/r1c1l0<CR>
-noremap <leader>; :Tabularize /;<CR>
-noremap <leader>;= :Tabularize /;/r1c1l0<CR>
+"noremap <leader>, :Tabularize /,<CR>
+"noremap <leader>s :Tabularize / /l0<CR>
+"noremap <leader>,= :Tabularize /,/r1c1l0<CR>
+"noremap <leader>= :Tabularize /=<CR>
+"noremap <leader>== :Tabularize /=/r1c1l0<CR>
+"noremap <leader>; :Tabularize /;<CR>
+"noremap <leader>;= :Tabularize /;/r1c1l0<CR>
+
+"Easy align
+vmap <Enter> <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+nmap <Leader><Space> vip:EasyAlign *\<CR>
+vmap <Leader><Space> :EasyAlign *\<CR>
+nmap <Leader>= vip:EasyAlign =<CR>
+vmap <Leader>= :EasyAlign =<CR>
 
 "gundo
 nnoremap <silent> <F4> :GundoToggle<CR>
@@ -345,8 +359,8 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 
 imap <C-f> <Right>
 imap <C-b> <Left>
-map <S-CR> O<ESC>
-map <CR> o<ESC>
+nmap <S-CR> O<ESC>
+nmap <CR> o<ESC>
 "autocmd FileType qf noremap <buffer> <CR> <CR>
 
 nmap <Tab> gt
@@ -414,7 +428,8 @@ if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
 "let g:neocomplcache_omni_functions.go='go#complete#Complete'
-let g:neocomplcache_omni_patterns.go='\h\w*\.'
+"let g:neocomplcache_omni_patterns.go='\h\w*\.'
+let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
 
 "NerdTree设置
 nnoremap <silent> <F5> :NERDTreeToggle<CR>
