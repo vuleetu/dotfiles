@@ -41,6 +41,10 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'myusuf3/numbers.vim'
 ""Highlighting css color
 Plugin 'skammer/vim-css-color'
+"gitv is a 'gitk clone' plugin for the text editor Vim. The goal is to give
+"you a similar set of functionality as a repository viewer. Using this plugin
+"you can view a repository's history including branching and merging
+Plugin 'gregsexton/gitv'
 ""Golang
 "Plugin 'jnwhiteh/vim-golang'
 ""go get -u github.com/nsf/gocode
@@ -57,6 +61,11 @@ Plugin 'leafo/moonscript-vim'
 "enable repeating supported plugin maps with ".""
 Plugin 'tpope/vim-repeat'
 Plugin 'vim-scripts/visualrepeat'
+"Show marks
+"Plugin 'vim-scripts/ShowMarks'
+"Sneak is a minimalist, versatile Vim motion plugin that jumps to any location
+"specified by two characters
+Plugin 'justinmk/vim-sneak'
 "easy align
 Plugin 'junegunn/vim-easy-align'
 ""visual undo plugin
@@ -191,6 +200,7 @@ Plugin 'croaker/mustang-vim'
 Plugin 'candycode.vim'
 Plugin 'jgdavey/vim-railscasts'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'morhetz/gruvbox'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -263,7 +273,7 @@ autocmd BufReadPost *
                     \ if line("'\"") > 1 && line("'\"") <= line("$") |
                     \ exe "normal! g`\"" |
                     \ endif
-autocmd BufEnter * lcd %:p:h
+autocmd BufEnter * if expand('%:p') !~ '://' | lcd %:p:h | endif
 
 " key mapping
 let mapleader=','
@@ -298,6 +308,18 @@ nmap <Leader><Space> vip:EasyAlign *\<CR>
 vmap <Leader><Space> :EasyAlign *\<CR>
 nmap <Leader>= vip:EasyAlign =<CR>
 vmap <Leader>= :EasyAlign =<CR>
+
+"Easy motion
+"hi! link EasyMotionTarget Search
+"hi! link EasyMotionShade Comment
+
+"Sneak
+"nmap f <Plug>Sneak_s
+"nmap F <Plug>Sneak_S
+"xmap f <Plug>Sneak_s
+"xmap F <Plug>Sneak_S
+"omap f <Plug>Sneak_s
+"omap F <Plug>Sneak_S
 
 "gundo
 nnoremap <silent> <F4> :GundoToggle<CR>
