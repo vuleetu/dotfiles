@@ -17,6 +17,8 @@ Plugin 'Shougo/vimproc'
 Plugin 'Shougo/vimshell.vim'
 ""NerdTree
 Plugin 'scrooloose/nerdtree'
+"Powerful file explorer implemented by Vim script
+Plugin 'Shougo/vimfiler.vim'
 ""NerdCommenter
 Plugin 'scrooloose/nerdcommenter'
 ""Sudo plugin
@@ -61,6 +63,10 @@ Plugin 'leafo/moonscript-vim'
 "enable repeating supported plugin maps with ".""
 Plugin 'tpope/vim-repeat'
 Plugin 'vim-scripts/visualrepeat'
+"substitute preview 
+Plugin 'osyo-manga/vim-over'
+"ack
+Plugin 'mileszs/ack.vim'
 "Show marks
 "Plugin 'vim-scripts/ShowMarks'
 "Sneak is a minimalist, versatile Vim motion plugin that jumps to any location
