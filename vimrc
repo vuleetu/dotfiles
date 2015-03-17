@@ -387,8 +387,8 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 
 imap <C-f> <Right>
 imap <C-b> <Left>
-nmap <S-CR> O<ESC>
-nmap <CR> o<ESC>
+"nmap <S-CR> O<ESC>
+"nmap <CR> o<ESC>
 "autocmd FileType qf noremap <buffer> <CR> <CR>
 
 nmap <Tab> gt
@@ -564,8 +564,14 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 "Move in insert mode
 inoremap <C-H> <C-\><C-O>b
 inoremap <C-L> <C-\><C-O>w
+
+"Command line
+cmap <C-A> <Home>
+"cmap <M-Left> <S-Left> "Not work
+
 syntax on
 
 "set guifont=Source\ Code\ Pro\ for\ Powerline
+""yaml setting
 au FileType yaml setl ts=2
 highlight clear SignColumn
