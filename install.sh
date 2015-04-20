@@ -254,3 +254,10 @@ sudo pip install --upgrade distribute
 #Funny tool which convert character to graphic
 pip install figlet
 pip install toilet
+
+#ttyrec(inlude ttyplay)
+brew install ttyrec
+
+#ttygif(convert record of ttyrec to gif)
+#https://github.com/icholy/ttygif
+brew install https://raw.githubusercontent.com/icholy/ttygif/master/ttygif.rb 

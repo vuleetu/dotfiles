@@ -391,6 +391,7 @@ imap <C-b> <Left>
 "nmap <CR> o<ESC>
 "autocmd FileType qf noremap <buffer> <CR> <CR>
 
+nnoremap <C-P> <Tab>
 nmap <Tab> gt
 nmap \ gT
 
