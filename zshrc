@@ -100,3 +100,4 @@ fi
 
 export EDITOR=vim
 source /Users/fisheryu/go/mygo/src/golang-crosscompile/crosscompile.bash
+alias fuck='eval $(thefuck $(fc -ln -1))'

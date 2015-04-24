@@ -261,3 +261,6 @@ brew install ttyrec
 #ttygif(convert record of ttyrec to gif)
 #https://github.com/icholy/ttygif
 brew install https://raw.githubusercontent.com/icholy/ttygif/master/ttygif.rb 
+
+#correct you previous command which failed
+pip install thefuck
