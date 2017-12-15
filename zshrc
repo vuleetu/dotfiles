@@ -45,12 +45,12 @@ ZSH_THEME="afowler"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git svn autojump history go docker vagrant brew brew-cask git-flow redis-cli tmux python rsync pip virtualenv)
+plugins=(git svn autojump history go docker vagrant brew brew-cask git-flow redis-cli tmux python rsync pip virtualenv desk fzf zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin:/Users/fisheryu/go/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/go/bin:/Users/fisheryu/go/bin"
 export GOPATH="/Users/fisheryu/go/mygo"
 export GOBIN="/Users/fisheryu/go/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -101,3 +101,53 @@ fi
 export EDITOR=vim
 source /Users/fisheryu/go/mygo/src/golang-crosscompile/crosscompile.bash
 alias fuck='eval $(thefuck $(fc -ln -1))'
+# Hook for desk activation
+[ -n "$DESK_ENV" ] && source "$DESK_ENV" || true
+alias d.='desk .'
+
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+
+function setproxy() {
+    export {HTTP,HTTPS,FTP}_PROXY="http://127.0.0.1:3998"
+    export ALL_PROXY=http://127.0.0.1:3998
+}
+
+function unsetproxy() {
+    unset {HTTP,HTTPS,FTP}_PROXY
+    unset ALL_PROXY
+}
+
+#pet Simple command-line snippet manager
+function prev() {
+  PREV=$(fc -lrn | head -n 1)
+  sh -c "pet new `printf %q "$PREV"`"
+}
+
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+bindkey '^s' pet-select
+
+setopt inc_append_history
+setopt share_history
+
+#zsh-completions load
+autoload -U compinit && compinit
+
+#export ZPLUG_HOME=/usr/local/opt/zplug
+#source $ZPLUG_HOME/init.zsh
+#zplug "plugins/git",   from:oh-my-zsh
+#
+## Install plugins if there are plugins that have not been installed
+#if ! zplug check --verbose; then
+#    printf "Install? [y/N]: "
+#    if read -q; then
+#        echo; zplug install
+#    fi
+#fi
+#
+## Then, source plugins and add commands to $PATH
+#zplug load --verbose

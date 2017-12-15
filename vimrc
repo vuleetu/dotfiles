@@ -32,6 +32,8 @@ Plugin 'oscarh/vimerl'
 Plugin 'vim-scripts/L9'
 ""Drawit
 Plugin 'vim-scripts/DrawIt'
+"dim inactive windows
+Plugin 'blueyed/vim-diminactive'
 ""easy-motion
 Plugin 'Lokaltog/vim-easymotion'
 ""Status bar
@@ -74,6 +76,9 @@ Plugin 'mileszs/ack.vim'
 Plugin 'justinmk/vim-sneak'
 "easy align
 Plugin 'junegunn/vim-easy-align'
+"Plugin 'junegunn/limelight.vim'
+"fuzzy finder
+Plugin 'junegunn/fzf'
 ""visual undo plugin
 Plugin 'sjl/gundo.vim'
 ""powerfull finder
@@ -98,6 +103,8 @@ Plugin 'vim-scripts/VOoM'
 "Moved to emmet-vim
 "Plugin 'mattn/zencoding-vim'
 Plugin 'mattn/emmet-vim'
+"Auto conver small-case SQL keywords into upper-case with iabbr.
+Plugin 'stardiviner/AutoSQLUpperCase.vim'
 
 "cocoa
 Plugin 'msanders/cocoa.vim'
@@ -338,6 +345,12 @@ nnoremap <silent> <F4> :GundoToggle<CR>
 
 "taglist
 nnoremap <silent> <F8> :TlistToggle<CR>
+nnoremap <silent> <Leader>s :call fzf#run({
+\   'down': '40%',
+\   'sink': 'botright split' })<CR>
+nnoremap <silent> <Leader>v :call fzf#run({
+\   'right': winwidth('.') / 2,
+\   'sink':  'vertical botright split' })<CR>
 let Tlist_Use_Right_Window = 1
 "let s:tlist_def_go_settings = 'go;f:func;v:var;t:type'
 
@@ -375,7 +388,9 @@ nnoremap <silent> <F7> :TagbarToggle<CR>
     "\ 'ctagsargs' : '-sort -silent'
 "\ }
 
+"vim-go setting
 let g:go_fmt_autosave = 0
+
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap gd <Plug>(go-def-vertical)
 au FileType go nmap <Leader>i <Plug>(go-info)
@@ -491,7 +506,7 @@ nmap <F1> <nop>
 imap <F1> <nop>
 let g:dwm_map_keys=1
 
-let g:gitgutter_max_signs=2000
+let g:gitgutter_max_signs=5000
 
 "let g:AutoComplPop_Behavior = {
 "\ 'c': [ {'command' : "\<C-x>\<C-o>",

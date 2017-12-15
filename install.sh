@@ -264,3 +264,7 @@ brew install https://raw.githubusercontent.com/icholy/ttygif/master/ttygif.rb
 
 #correct you previous command which failed
 pip install thefuck
+
+#git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+#git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+#git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
