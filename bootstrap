@@ -168,7 +168,7 @@ install_resources() {
   log "Installing custom zsh configuration"
   ln -fs $BASE/res/bootstrap.zsh ~/.oh-my-zsh/custom/bootstrap.zsh
   log "Install plugins for oh-my-zsh"
-  sed -i.bak -e /^plugins=\(/,/\)/'s/^[[:space:]]*git$/git svn autojump history go docker vagrant brew brew-cask git-flow redis-cli tmux python rsync pip virtualenv zsh-autosuggestions zsh-syntax-highlighting kubectl tldr fzf-marker/g' ~/.zshrc
+  sed -i.bak -e /^plugins=\(/,/\)/'s/^[[:space:]]*git$/git svn autojump history go docker vagrant git-flow redis-cli tmux python rsync pip virtualenv zsh-autosuggestions zsh-syntax-highlighting kubectl tldr fzf-marker/g' ~/.zshrc
 
   log "Installing golang"
   use_golang
