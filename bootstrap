@@ -26,7 +26,7 @@ isset() {
 
 #golang
 use_golang() {
-  while ! isset GO_VERSION; do
+  while [[ -z $GO_VERSION ]]; do
     echo "Choose golang version you want to install"
     read GO_VERSION
   done
@@ -62,6 +62,30 @@ use_proxy() {
 
   log "Enable proxy to accelerate download speed"
   setproxy
+}
+
+#git
+conf_git_global() {
+  if [[ -z $1 ]]; then
+      log e "Invalid config name"
+      exit 1
+  fi
+
+  log $1, $2
+
+  if [[ -z $2 ]]; then
+      GIT_VALUE=$(git config --global --get $1)
+      if [[ $GIT_VALUE == "" ]]; then
+          while [[ $GIT_VALUE == "" ]]; do
+              log "Please type value for $1"
+              read GIT_VALUE
+          done
+
+          git config --global "$1" "$GIT_VALUE"
+      fi
+  else
+      git config --global "$1" "$2"
+  fi
 }
 
 
@@ -188,7 +212,20 @@ install_resources() {
 install_configs() {
   #Git
   log "Config git"
-  git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+  conf_git_global user.name
+  conf_git_global user.email
+
+  conf_git_global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+  [[ ! -f ~/.gitmessage ]] && cp $BASE/dotfiles/gitmessage ~/.gitmessage
+  conf_git_global commit.template ~/.gitmessage
+
+  if [[ ! -f ~/.gitignore_global ]]; then
+      log "Loading gi helper (gitignore)"
+      source $BASE/env/gi
+      log "Generate global gitignore file against osx,vim"
+      gi osx,vim >> ~/.gitignore_global
+  fi
+  conf_git_global core.excludesfile ~/.gitignore_global
 
   #Man page, Compile terminfo
   log "Compile terminfo for MAN page"
@@ -198,7 +235,7 @@ install_configs() {
   $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
 
   #tldr
-  mkdir ~/.oh-my-zsh/custom/plugins/tldr && ln -fs $BASE/res/tldr.plugin.zsh ~/.oh-my-zsh/custom/plugins/tldr/tldr.plugin.zsh
+  [[ ! -d ~/.oh-my-zsh/custom/plugins/tldr ]] && mkdir ~/.oh-my-zsh/custom/plugins/tldr && ln -fs $BASE/res/tldr.plugin.zsh ~/.oh-my-zsh/custom/plugins/tldr/tldr.plugin.zsh
 }
 
 install_requirements && install_resources
