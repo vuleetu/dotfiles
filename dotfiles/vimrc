@@ -13,8 +13,8 @@ Plugin 'gmarik/Vundle.vim'
 "Autocomplete when type in insert mode
 Plugin 'Shougo/neocomplcache'
 "vim shell
-Plugin 'Shougo/vimproc'
-Plugin 'Shougo/vimshell.vim'
+"Plugin 'Shougo/vimproc'
+"Plugin 'Shougo/vimshell.vim'
 ""NerdTree
 Plugin 'scrooloose/nerdtree'
 "Powerful file explorer implemented by Vim script
@@ -39,6 +39,7 @@ Plugin 'Lokaltog/vim-easymotion'
 ""Status bar
 "Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 ""Markdown
 Plugin 'plasticboy/vim-markdown'
 ""Better number control
@@ -69,6 +70,9 @@ Plugin 'vim-scripts/visualrepeat'
 Plugin 'osyo-manga/vim-over'
 "ack
 Plugin 'mileszs/ack.vim'
+"node.js
+Plugin 'moll/vim-node'
+Plugin 'ahayman/vim-nodejs-complete'
 "Show marks
 "Plugin 'vim-scripts/ShowMarks'
 "Sneak is a minimalist, versatile Vim motion plugin that jumps to any location
@@ -179,8 +183,10 @@ Plugin 'gregsexton/MatchTag'
 Plugin 'majutsushi/tagbar'
 ""Jslint
 ""sudo apt-get install node.js first
-Plugin 'hallettj/jslint.vim'
+"Plugin 'hallettj/jslint.vim'
 ""Highlight multi words in different colors
+"Dash
+Plugin 'rizzatti/dash.vim'
 Plugin 'Mark--Karkat'
 ""Multi search
 Plugin 'multisearch.vim'
@@ -322,6 +328,9 @@ vmap <Leader><Space> :EasyAlign *\<CR>
 nmap <Leader>= vip:EasyAlign =<CR>
 vmap <Leader>= :EasyAlign =<CR>
 
+"Simulate :GoInfo in vim-go plugin
+nmap <Leader>gi :GoInfo<CR>
+
 "Easy motion
 "hi! link EasyMotionTarget Search
 "hi! link EasyMotionShade Comment
@@ -390,6 +399,7 @@ nnoremap <silent> <F7> :TagbarToggle<CR>
 
 "vim-go setting
 let g:go_fmt_autosave = 0
+let g:go_template_autocreate = 0
 
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap gd <Plug>(go-def-vertical)
@@ -452,6 +462,7 @@ let g:indent_guides_guide_size = 1
 
 "syntastic setting
 let g:syntastic_auto_loc_list=1
+let g:syntastic_go_checkers=['go']
 
 "Vimerl设置
 set tags+=/usr/local/lib/erlang/tags
@@ -581,6 +592,9 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 inoremap <C-H> <C-\><C-O>b
 inoremap <C-L> <C-\><C-O>w
 
+"Gitcommit
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
 "Command line
 cmap <C-A> <Home>
 "cmap <M-Left> <S-Left> "Not work
@@ -590,4 +604,6 @@ syntax on
 "set guifont=Source\ Code\ Pro\ for\ Powerline
 ""yaml setting
 au FileType yaml setl ts=2
+au FileType yaml setl sw=2
+au FileType yaml setl sts=2
 highlight clear SignColumn

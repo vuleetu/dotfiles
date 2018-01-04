@@ -1,0 +1,212 @@
+#!/usr/bin/env bash
+
+#######Utils##########
+#Colorfull logging
+log() {
+  case $1 in
+  [wW])
+     shift
+     echo -e "\033[33m$@\033[0m"
+     ;;
+  [eE])
+     shift
+     echo -e "\033[31m$@\033[0m"
+     ;;
+  *)
+     echo -e "\033[34m$@\033[0m"
+     ;;
+  esac
+}
+
+#Variable check
+isset() {
+  v=$1
+  [[ ! -z ${!v+x} ]]
+}
+
+#golang
+use_golang() {
+  while ! isset GO_VERSION; do
+    echo "Choose golang version you want to install"
+    read GO_VERSION
+  done
+
+  GOLANG_FILE_NAME=go${GO_VERSION}.darwin-amd64.tar.gz
+  log "Selected golang version: $GOLANG_FILE_NAME"
+
+  log "Prepare to install golang"
+  if [[ ! -d /usr/local/go ]]; then
+     if [[ ! -f $RES_DIR/$GOLANG_FILE_NAME ]]; then
+         log "Download golang ($GOLANG_FILE_NAME)"
+         wget -c -O $RES_DIR/$GOLANG_FILE_NAME https://storage.googleapis.com/golang/$GOLANG_FILE_NAME
+     fi
+
+     log "Installing golang ($GOLANG_FILE_NAME)"
+     sudo tar -C /usr/local -xzf $RES_DIR/$GOLANG_FILE_NAME
+  fi
+
+  log "Loading golang env script"
+  source $BASE/env/golang
+
+  log "Prepare $GOPATH and $GOBIN"
+  [[ ! -d ~/go/mygo ]] && mkdir -p  $GOPATH
+  [[ ! -d ~/go/bin ]] && mkdir -p  $GOBIN
+}
+
+#proxy
+use_proxy() {
+  #Uncomment and change to YOUR http proxy
+  #HTTP_PROXY_URL="http://127.0.0.1:1087"
+  log "Loading proxy env script"
+  source $BASE/env/proxy
+
+  log "Enable proxy to accelerate download speed"
+  setproxy
+}
+
+
+#####Config#######
+log "Determining current script location"
+BASE=`python -c 'import os,sys;print(os.path.realpath(sys.argv[1]))' $0`
+BASE=`dirname $BASE`
+log "Current script location: $BASE"
+
+BASE_NAME=`basename $BASE`
+
+if [[ $BASE_NAME == "Resources" ]]; then
+    log e "Startup folder can not be Resources"
+    exit 1
+fi
+
+BOOTSTRAP_DIR=$(bash $BASE/tools/realpath ~/.config/bootstrap)
+log "Creating bootstrap root folder ($BOOTSTRAP_DIR)"
+[ ! -d $BOOTSTRAP_DIR ] && mkdir -p $BOOTSTRAP_DIR
+
+PARENT_OF_BASE=`dirname $BASE`
+if [ $PARENT_OF_BASE != $BOOTSTRAP_DIR ]; then
+   log e "Please place startup folder under ($BOOTSTRAP_DIR)"
+   exit 1
+fi
+
+RES_DIR=$BOOTSTRAP_DIR/Resources
+log "Creating resoures folder ($RES_DIR)"
+[ ! -d $RES_DIR ] && mkdir $RES_DIR
+
+
+###########TASKS########
+install_requirements() {
+  #Homebrew
+  log "Checking if Homebrew installed before"
+  if ! command -v brew > /dev/null 2>&1; then
+      log "Installing Homebrew..."
+      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+
+  #Set homebrew mirrors
+  log "Exporting env for homebrew bottle mirror"
+  export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+
+  #log "Updating homebrew"
+  #brew update
+
+  log "Disable brew auto update"
+  export HOMEBREW_NO_AUTO_UPDATE=true
+
+  #Required tools from homebrew
+  CMD_LISTS='zsh autojump make git tig colordiff bzr wget curl ctags nodejs xz coreutils tmux fzf desk ack tldr'
+  log "Installing $CMD_LISTS..."
+  brew install $CMD_LISTS
+  log "Installing vim with python3 support"
+  brew install vim --with-python3
+}
+
+install_resources() {
+  use_proxy
+
+  #http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/
+  #http://blog.bbkanba.com/配置linux下dircolorsls命令和mac下iterm2的颜色让终端iterm2或terminal也色彩/
+  log "Downloading themes for GNU ls (dircolors)"
+  if [ ! -d $RES_DIR/dircolors-solarized ]; then
+      git clone --depth=1 https://github.com/seebi/dircolors-solarized $RES_DIR/dircolors-solarized
+  fi
+
+  log "Copy dircolors databse to ~/.dir_colors"
+  DIRCOLIR_DB=dircolors.256dark
+  if [ -f ~/.dir_colors ]; then
+      log "~/.dir_colors exits. Do you want to override it? (yN)"
+      read yn
+      case $yn in
+      [yY])
+         log "Replacing ~/.dir_colors with $DIRCOLIR_DB"
+         cp -rf $RES_DIR/dircolors-solarized/$DIRCOLIR_DB  ~/.dir_colors
+         ;;
+      *)
+         ;;
+      esac
+  else
+     log "Create ~/.dir_colors with $DIRCOLIR_DB"
+     cp $RES_DIR/dircolors-solarized/$DIRCOLIR_DB  ~/.dir_colors
+  fi
+
+  log "Downloading themes for iTerm2.app..."
+  [ ! -d $RES_DIR/iTerm2-Color-Schemes ] && git clone --depth=1 https://github.com/mbadolato/iTerm2-Color-Schemes $RES_DIR/iTerm2-Color-Schemes
+  #Uncomment below to dowload theme for Terminal.app, STRONG RECOMMEND USE ITERM2.APP INSTEAD OF TERMINAL.APP
+  #log "Downloading themes for Terminal.app..."
+  #git clone --depth=1 https://github.com/tamul/solarized-osx-terminal-colors.git $RES_DIR/solarized-osx-terminal-colors
+  log "Downloading and install patched fonts for tools which use Powerline..."
+  [ ! -d $RES_DIR/fonts ] && git clone https://github.com/powerline/fonts.git --depth=1 $RES_DIR/fonts && $RES_DIR/fonts/install.sh
+  log w "Change font to SourceCode-Pro before use Powerline related tools"
+  log "Installing powerline-shell..."
+  [ ! -d $RES_DIR/powerline-shell ] && git clone --depth=1 https://github.com/banga/powerline-shell $RES_DIR/powerline-shell && python $RES_DIR/powerline-shell/setup.py install
+
+  #oh-my-zsh
+  log "Installing oh-my-zsh which will change your login shell to zsh"
+  [ ! -d ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  log "Downloading zsh-autosuggestions and zsh-syntax-highlighting"
+  [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ] && git clone --depth=1 git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+  [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] && git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  log "Installing custom zsh configuration"
+  ln -fs $BASE/res/bootstrap.zsh ~/.oh-my-zsh/custom/bootstrap.zsh
+  log "Install plugins for oh-my-zsh"
+  sed -i.bak -e /^plugins=\(/,/\)/'s/^[[:space:]]*git$/git svn autojump history go docker vagrant brew brew-cask git-flow redis-cli tmux python rsync pip virtualenv zsh-autosuggestions zsh-syntax-highlighting kubectl tldr fzf-marker/g' ~/.zshrc
+
+  log "Installing golang"
+  use_golang
+
+  log "Installing Vundle for VIM"
+  [ ! -d ~/.vim/bundle/Vundle.vim ] && git clone --depth=1 https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  log "Installing vimrc file"
+  cp -rf $BASE/dotfiles/vimrc ~/.vimrc
+  #VIM configuration
+  log "Installing plugin for vim"
+  vim +PluginInstall +qall
+  #vim-go
+  log "Installing tools for vim-go"
+  vim +GoInstallBinaries +qall
+}
+
+install_configs() {
+  #Git
+  log "Config git"
+  git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+
+  #Man page, Compile terminfo
+  log "Compile terminfo for MAN page"
+  tic $BASE/res/mostlike.txt
+
+  #fzf key bindings and completion
+  $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
+
+  #tldr
+  mkdir ~/.oh-my-zsh/custom/plugins/tldr && ln -fs $BASE/res/tldr.plugin.zsh ~/.oh-my-zsh/custom/plugins/tldr/tldr.plugin.zsh
+}
+
+install_requirements && install_resources
+install_configs
+
+#### HELP ####
+# command, type, hash
+# command -v foo >/dev/null 2>&1
+# type foo >/dev/null 2>&1
+# hash foo 2>/dev/null
+

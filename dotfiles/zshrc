@@ -45,7 +45,7 @@ ZSH_THEME="afowler"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git svn autojump history go docker vagrant brew brew-cask git-flow redis-cli tmux python rsync pip virtualenv desk fzf zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git svn autojump history go docker vagrant brew brew-cask git-flow redis-cli tmux python rsync pip virtualenv desk fzf zsh-completions zsh-autosuggestions zsh-syntax-highlighting kubectl tldr fzf-marker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -117,25 +117,11 @@ function unsetproxy() {
     unset ALL_PROXY
 }
 
-#pet Simple command-line snippet manager
-function prev() {
-  PREV=$(fc -lrn | head -n 1)
-  sh -c "pet new `printf %q "$PREV"`"
-}
-
-function pet-select() {
-  BUFFER=$(pet search --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle redisplay
-}
-zle -N pet-select
-bindkey '^s' pet-select
-
 setopt inc_append_history
 setopt share_history
 
-#zsh-completions load
-autoload -U compinit && compinit
+#direnv
+eval "$(direnv hook zsh)"
 
 #export ZPLUG_HOME=/usr/local/opt/zplug
 #source $ZPLUG_HOME/init.zsh
@@ -151,3 +137,41 @@ autoload -U compinit && compinit
 #
 ## Then, source plugins and add commands to $PATH
 #zplug load --verbose
+#
+
+#zsh-completions load
+autoload -U compinit && compinit
+
+######PET##########
+#pet Simple command-line snippet manager
+function prev() {
+  PREV=$(fc -lrn | head -n 1)
+  sh -c "pet new `printf %q "$PREV"` -t"
+}
+
+function pet-select() {
+  BUFFER=$(pet search --color --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+bindkey '^s' pet-select
+
+#export FZF_DEFAULT_OPTS="--preview 'head -100 {}'"
+
+alias pn="pet new -t"
+
+#########FZF##########
+#fzf key binding for zsh
+source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+
+
+######MARKER########
+#marker something like pet which let you save snippet and receive it latter
+[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
+
+
+#########CHEAT#########
+#cheatsheet允许用户创建cheatsheet, 它本身自带了部分公共的cheatsheet(不能删除), 你也可以自己创建(可以删除）
+export DEFAULT_CHEAT_DIR='~/Dropbox/dotfiles/cheatsheets/'
+export CHEATCOLORS=true
