@@ -232,10 +232,18 @@ install_configs() {
   tic $BASE/res/mostlike.txt
 
   #fzf key bindings and completion
+  log "Installing fzf completion for other command and keybinding script"
   $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
 
   #tldr
+  log "Install tldr completion script"
   [[ ! -d ~/.oh-my-zsh/custom/plugins/tldr ]] && mkdir ~/.oh-my-zsh/custom/plugins/tldr && ln -fs $BASE/res/tldr.plugin.zsh ~/.oh-my-zsh/custom/plugins/tldr/tldr.plugin.zsh
+
+  #brew cask
+  log "Installing brew cask"
+  if ! command -v brew cask > /dev/null 2>&1; then
+      brew tap caskroom/cask
+  fi
 }
 
 install_requirements && install_resources
