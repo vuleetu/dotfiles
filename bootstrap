@@ -142,6 +142,7 @@ install_requirements() {
   brew install $CMD_LISTS
   log "Installing vim with python3 support"
   brew install vim --with-python3
+  return 0
 }
 
 install_resources() {
