@@ -3,4 +3,8 @@ setopt share_history
 
 export EDITOR=vim
 
+#zsh_autosuggestions plugin tweak
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
+
+#zsh_syntaxhighlightings plugin tweak
+ZSH_HIGHLIGHT_STYLES[comment]='fg=10'
