@@ -245,6 +245,12 @@ install_configs() {
   if ! command -v brew cask > /dev/null 2>&1; then
       brew tap caskroom/cask
   fi
+
+  #brew services
+  log "Installing brew services"
+  if ! command -v brew services > /dev/null 2>&1; then
+      brew tap homebrew/services
+  fi
 }
 
 install_requirements && install_resources
