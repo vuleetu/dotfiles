@@ -1,0 +1,98 @@
+#BOTTLE镜像
+update_bottle_mirror() {
+  if [[ -z $1 ]]; then
+      echo "Mirror name not specified"
+      return
+  fi
+
+  local mirrors=(
+    "tsinghua^https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+    "ustc^https://mirrors.ustc.edu.cn/homebrew-bottles" )
+
+  for mirror in "${mirrors[@]}" ; do
+      local name="${mirror%%^*}"
+      local url="${mirror##*^}"
+      if [[ $name == $1 ]]; then
+        export HOMEBREW_BOTTLE_DOMAIN=$url
+        return
+      fi
+  done
+
+  echo "Unsupported Homebrew bottle mirror ($1)"
+}
+
+#中科大源
+update_brew_mirror() {
+  if [[ -z $1 ]]; then
+      echo "Mirror name not specified"
+      return
+  fi
+
+  local cwd=`pwd`
+  local brew_mirrors=(
+    "tsinghua^https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+    "ustc^https://mirrors.ustc.edu.cn/brew.git"
+  )
+  local brew_core_mirrors=(
+    "tsinghua^https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+    "ustc^https://mirrors.ustc.edu.cn/homebrew-core.git"
+  )
+  local brew_cask_mirrors=(
+    "ustc^https://mirrors.ustc.edu.cn/homebrew-cask.git"
+  )
+
+  #brew
+  for mirror in "${brew_mirrors[@]}" ; do
+      local name="${mirror%%^*}"
+      local url="${mirror##*^}"
+      if [[ $name == $1 ]]; then
+        cd "$(brew --repo)"
+        git remote set-url origin $url
+        break
+      fi
+  done
+
+  #brew-core
+  for mirror in "${brew_core_mirrors[@]}" ; do
+      local name="${mirror%%^*}"
+      local url="${mirror##*^}"
+      if [[ $name == $1 ]]; then
+        cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+        git remote set-url origin $url
+        break
+      fi
+  done
+
+  #brew-cask
+  for mirror in "${brew_cask_mirrors[@]}" ; do
+      local name="${mirror%%^*}"
+      local url="${mirror##*^}"
+      if [[ $name == $1 ]]; then
+        cd "$(brew --repo)/Library/Taps/caskroom/homebrew-cask"
+        git remote set-url origin $url
+        break
+      fi
+  done
+
+  #also update bottle domain
+  update_bottle_mirror $1
+
+  cd $cwd
+}
+
+#恢复成官方源
+restore_brew_mirror() {
+  local cwd=`pwd`
+  #brew
+  cd "$(brew --repo)"
+  git remote set-url origin https://github.com/Homebrew/brew.git
+  #brew-core
+  cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+  git remote set-url origin https://github.com/Homebrew/homebrew-core.git
+  #brew-cask
+  cd "$(brew --repo)/Library/Taps/caskroom/homebrew-cask"
+  git remote set-url origin https://github.com/caskroom/homebrew-cask
+  #bottle-domain
+  unset HOMEBREW_BOTTLE_DOMAIN
+  cd $cwd
+}

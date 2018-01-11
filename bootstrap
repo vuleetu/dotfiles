@@ -127,13 +127,13 @@ install_requirements() {
   fi
 
   #Set homebrew mirrors
-  log "Exporting env for homebrew bottle mirror"
-  export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
-
-  #log "Updating homebrew"
-  #brew update
-
-  log "Disable brew auto update"
+  log "Loading homebrew utils"
+  source $BASE/env/homebrew.lib
+  log "Updating homebrew formula mirrors"
+  update_brew_mirror tsinghua
+  log "Updating homebrew formula"
+  brew -v update
+  log "Disable brew autoupdate when install command"
   export HOMEBREW_NO_AUTO_UPDATE=true
 
   #Required tools from homebrew
