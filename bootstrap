@@ -241,16 +241,27 @@ install_configs() {
   [[ ! -d ~/.oh-my-zsh/custom/plugins/tldr ]] && mkdir ~/.oh-my-zsh/custom/plugins/tldr && ln -fs $BASE/res/tldr.plugin.zsh ~/.oh-my-zsh/custom/plugins/tldr/tldr.plugin.zsh
 
   #brew cask
-  log "Installing brew cask"
-  if ! command -v brew cask > /dev/null 2>&1; then
+  log "Installing tap (caskroom/cask)"
+  if ! brew tap|grep caskroom/cask > /dev/null 2>&1; then
       brew tap caskroom/cask
+  fi
+
+  log "Installing tap (caskroom/fonts)"
+  if ! brew tap|grep caskroom/fonts > /dev/null 2>&1; then
+      brew tap caskroom/fonts
   fi
 
   #brew services
   log "Installing brew services"
-  if ! command -v brew services > /dev/null 2>&1; then
+  if ! brew tap|grep homebrew/services > /dev/null 2>&1; then
       brew tap homebrew/services
   fi
+
+  #install apps via brew cask
+  log "Installing required apps via brew cask"
+  APP_LISTS='macdown anki dash forklift keepassx boostnote itsycal'
+  log "Installing $APP_LISTS..."
+  brew cask install $APP_LISTS
 }
 
 install_requirements && install_resources
