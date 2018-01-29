@@ -58,7 +58,7 @@ use_proxy() {
   #Uncomment and change to YOUR http proxy
   #HTTP_PROXY_URL="http://127.0.0.1:1087"
   log "Loading proxy env script"
-  source $BASE/env/proxy
+  source $BASE/env/proxy.env
 
   log "Enable proxy to accelerate download speed"
   setproxy
