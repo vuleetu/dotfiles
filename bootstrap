@@ -240,6 +240,10 @@ install_configs() {
   log "Install tldr completion script"
   [[ ! -d ~/.oh-my-zsh/custom/plugins/tldr ]] && mkdir ~/.oh-my-zsh/custom/plugins/tldr && ln -fs $BASE/res/tldr.plugin.zsh ~/.oh-my-zsh/custom/plugins/tldr/tldr.plugin.zsh
 
+  #hint (https://dev.to/koenighotze/cheat-sheets-in-your-terminal--1dli)
+  log "Install hint(cheatsheet)"
+  [[ ! -f /usr/local/bin/hint ]] && ln -s $BASE/res/hint /usr/local/bin/hint
+
   #conda zsh completion
   log "Install conda completion script"
   [[ ! -f /usr/local/share/zsh/site-functions/_conda ]] && ln -s $BASE/res/_conda /usr/local/share/zsh/site-functions/_conda
