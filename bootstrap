@@ -270,6 +270,9 @@ install_configs() {
   APP_LISTS='iterm2 google-chrome macdown anki dash keepassxc boostnote itsycal skype slack dropbox evernote appcleaner the-unarchiver cheatsheet scroll-reverser anaconda dictunifier iina'
   log "Installing $APP_LISTS..."
   brew cask install $APP_LISTS
+
+  log "Installing required apps from AppStore via mas"
+  mas install 944848654 434350458 836500024 412448059 451732904 1221250572 568494494
 }
 
 install_requirements && install_resources
