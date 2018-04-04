@@ -195,7 +195,7 @@ install_resources() {
   [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] && git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
   [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-completions ] && git clone --depth=1 https://github.com/zsh-users/zsh-completions.git ~/.oh-my-zsh/custom/plugins/zsh-completions
   log "Installing custom zsh configuration"
-  ln -fs $BASE/res/bootstrap.zsh ~/.oh-my-zsh/custom/bootstrap.zsh
+  ln -fs $BASE/zsh/bootstrap.zsh ~/.oh-my-zsh/custom/bootstrap.zsh
   log "Install plugins for oh-my-zsh"
   sed -i.bak -e /^plugins=\(/,/\)/'s/^[[:space:]]*git$/git svn history go docker vagrant git-flow redis-cli tmux python rsync pip virtualenv zsh-completions zsh-autosuggestions zsh-syntax-highlighting kubectl tldr/g' ~/.zshrc
 
@@ -241,16 +241,16 @@ install_configs() {
   $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
 
   #tldr
-  log "Install tldr completion script"
-  [[ ! -d ~/.oh-my-zsh/custom/plugins/tldr ]] && mkdir ~/.oh-my-zsh/custom/plugins/tldr && ln -fs $BASE/res/tldr.plugin.zsh ~/.oh-my-zsh/custom/plugins/tldr/tldr.plugin.zsh
+  #log "Install tldr completion script"
+  #[[ ! -d ~/.oh-my-zsh/custom/plugins/tldr ]] && mkdir ~/.oh-my-zsh/custom/plugins/tldr && ln -fs $BASE/res/tldr.plugin.zsh ~/.oh-my-zsh/custom/plugins/tldr/tldr.plugin.zsh
 
   #hint (https://dev.to/koenighotze/cheat-sheets-in-your-terminal--1dli)
   log "Install hint(cheatsheet)"
   [[ ! -f /usr/local/bin/hint ]] && ln -s $BASE/res/hint /usr/local/bin/hint
 
   #conda zsh completion
-  log "Install conda completion script"
-  [[ ! -f /usr/local/share/zsh/site-functions/_conda ]] && ln -s $BASE/res/_conda /usr/local/share/zsh/site-functions/_conda
+  #log "Install conda completion script"
+  #[[ ! -f /usr/local/share/zsh/site-functions/_conda ]] && ln -s $BASE/res/_conda /usr/local/share/zsh/site-functions/_conda
 
   #brew cask
   log "Installing tap (caskroom/cask)"
