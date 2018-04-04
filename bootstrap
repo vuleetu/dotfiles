@@ -187,13 +187,14 @@ install_resources() {
   #oh-my-zsh
   log "Installing oh-my-zsh which will change your login shell to zsh"
   [ ! -d ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  log "Downloading zsh-autosuggestions and zsh-syntax-highlighting"
+  log "Downloading zsh-completions, zsh-autosuggestions and zsh-syntax-highlighting"
   [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ] && git clone --depth=1 git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
   [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] && git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-completions ] && git clone --depth=1 https://github.com/zsh-users/zsh-completions.git ~/.oh-my-zsh/custom/plugins/zsh-completions
   log "Installing custom zsh configuration"
   ln -fs $BASE/res/bootstrap.zsh ~/.oh-my-zsh/custom/bootstrap.zsh
   log "Install plugins for oh-my-zsh"
-  sed -i.bak -e /^plugins=\(/,/\)/'s/^[[:space:]]*git$/git svn history go docker vagrant git-flow redis-cli tmux python rsync pip virtualenv zsh-autosuggestions zsh-syntax-highlighting kubectl tldr/g' ~/.zshrc
+  sed -i.bak -e /^plugins=\(/,/\)/'s/^[[:space:]]*git$/git svn history go docker vagrant git-flow redis-cli tmux python rsync pip virtualenv zsh-completions zsh-autosuggestions zsh-syntax-highlighting kubectl tldr/g' ~/.zshrc
 
   log "Installing golang"
   use_golang
