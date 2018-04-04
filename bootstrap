@@ -142,6 +142,9 @@ install_requirements() {
   brew install $CMD_LISTS
   log "Installing vim with python3 support"
   brew install vim --with-python3
+
+  log "Installing lunchy(A friendly wrapper for launchctl)"
+  gem install lunchy
   return 0
 }
 
