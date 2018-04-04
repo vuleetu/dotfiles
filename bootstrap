@@ -137,7 +137,7 @@ install_requirements() {
   export HOMEBREW_NO_AUTO_UPDATE=true
 
   #Required tools from homebrew
-  CMD_LISTS='zsh autojump make git tig colordiff bzr wget curl ctags nodejs xz coreutils tmux fzf desk ack tldr aria2 mas youtube-dl'
+  CMD_LISTS='zsh autojump make git tig colordiff bzr wget curl ctags nodejs xz coreutils tmux fzf desk ack tldr aria2 mas youtube-dl pstree'
   log "Installing $CMD_LISTS..."
   brew install $CMD_LISTS
   log "Installing vim with python3 support"
@@ -267,7 +267,7 @@ install_configs() {
 
   #install apps via brew cask
   log "Installing required apps via brew cask"
-  APP_LISTS='iterm2 google-chrome macdown anki dash keepassxc boostnote itsycal skype slack dropbox evernote appcleaner the-unarchiver cheatsheet scroll-reverser anaconda dictunifier iina'
+  APP_LISTS='iterm2 google-chrome macdown anki dash keepassxc boostnote itsycal skype slack dropbox evernote appcleaner the-unarchiver cheatsheet scroll-reverser anaconda dictunifier iina bitbar'
   log "Installing $APP_LISTS..."
   brew cask install $APP_LISTS
 
