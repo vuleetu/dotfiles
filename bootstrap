@@ -272,8 +272,13 @@ install_configs() {
   #install apps via brew cask
   log "Installing required apps via brew cask"
   APP_LISTS='iterm2 google-chrome macdown anki dash keepassxc boostnote itsycal skype slack dropbox evernote appcleaner the-unarchiver cheatsheet scroll-reverser anaconda dictunifier iina bitbar'
-  log "Installing $APP_LISTS..."
+  log "Installing apps ($APP_LISTS)..."
   brew cask install $APP_LISTS
+
+  log "Installing quicklook plugins"
+  PLUGIN_LISTS='qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize webpquicklook suspicious-package quicklookase qlvideo'
+  log "Installing plugins ($PLUGIN_LISTS)..."
+  brew cask install $PLUGIN_LISTS
 
   log "Installing required apps from AppStore via mas"
   mas install 944848654 434350458 836500024 412448059 451732904 1221250572 568494494
