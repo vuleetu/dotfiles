@@ -18,3 +18,7 @@ export LC_ALL="en_US.UTF-8"
 
 #Used for zsh-completions
 autoload -U compinit && compinit
+
+##dvm(Docker Version Manager)
+[ -f /usr/local/opt/dvm/dvm.sh ] && . /usr/local/opt/dvm/dvm.sh
+[[ -r /usr/local/opt/dvm/etc/bash_completion.d/dvm ]] && . /usr/local/opt/dvm/etc/bash_completion.d/dvm
