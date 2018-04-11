@@ -45,8 +45,8 @@ use_golang() {
      sudo tar -C /usr/local -xzf $RES_DIR/$GOLANG_FILE_NAME
   fi
 
-  log "Loading golang env script"
-  source $BASE/env/golang.env
+  log "Loading golang helper script"
+  source $BASE/zsh/autoload/golang.zsh
 
   log "Prepare $GOPATH and $GOBIN"
   [[ ! -d ~/go/mygo ]] && mkdir -p  $GOPATH
@@ -57,8 +57,8 @@ use_golang() {
 use_proxy() {
   #Uncomment and change to YOUR http proxy
   #HTTP_PROXY_URL="http://127.0.0.1:1087"
-  log "Loading proxy env script"
-  source $BASE/env/proxy.env
+  log "Loading proxy helper script"
+  source $BASE/zsh/autoload/proxy.zsh
 
   log "Enable proxy to accelerate download speed"
   setproxy
@@ -128,11 +128,11 @@ install_requirements() {
 
   #Set homebrew mirrors
   log "Loading homebrew utils"
-  source $BASE/env/homebrew.lib
+  source $BASE/zsh/autoload/homebrew.lib
   log "Updating homebrew formula mirrors"
   update_brew_mirror tsinghua
   log "Updating homebrew formula"
-  brew -v update
+  brew update -v
   log "Disable brew autoupdate when install command"
   export HOMEBREW_NO_AUTO_UPDATE=true
 
@@ -204,14 +204,6 @@ install_resources() {
 
   log "Installing Vundle for VIM"
   [ ! -d ~/.vim/bundle/Vundle.vim ] && git clone --depth=1 https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  log "Installing vimrc file"
-  cp -rf $BASE/dotfiles/vimrc ~/.vimrc
-  #VIM configuration
-  log "Installing plugin for vim"
-  vim +PluginInstall +qall
-  #vim-go
-  log "Installing tools for vim-go"
-  vim +GoInstallBinaries +qall
 }
 
 install_configs() {
@@ -226,7 +218,7 @@ install_configs() {
 
   if [[ ! -f ~/.gitignore_global ]]; then
       log "Loading gi helper (gitignore)"
-      source $BASE/env/gi
+      source $BASE/zsh/autoload/gi.zsh
       log "Generate global gitignore file against osx,vim"
       gi osx,vim >> ~/.gitignore_global
   fi
