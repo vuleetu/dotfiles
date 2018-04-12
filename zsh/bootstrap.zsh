@@ -18,3 +18,4 @@ done
 
 #add bin to PATH
 PATH=$PATH:${owned_zsh_dir}/bin
+export BOOTSTRAP_ZSH_DIR=$owned_zsh_dir

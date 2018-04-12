@@ -137,7 +137,7 @@ install_requirements() {
   export HOMEBREW_NO_AUTO_UPDATE=true
 
   #Required tools from homebrew
-  CMD_LISTS='zsh autojump make git tig colordiff bzr wget curl ctags nodejs xz coreutils tmux fzf desk ack tldr aria2 mas youtube-dl pstree tree jq dvm'
+  CMD_LISTS='zsh autojump make git tig colordiff bzr wget curl ctags nodejs xz coreutils tmux fzf desk ack tldr aria2 mas youtube-dl pstree tree jq dvm cheat'
   log "Installing $CMD_LISTS..."
   brew install $CMD_LISTS
   log "Installing vim with python3 support"
