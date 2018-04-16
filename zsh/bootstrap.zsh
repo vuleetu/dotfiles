@@ -2,8 +2,8 @@ owned_zsh_dir=${0:A:h}
 owned_plugins_dir=${owned_zsh_dir}/plugins
 owned_autoload_dir=${owned_zsh_dir}/autoload
 
-external_plugins_dir=${owned_zsh_dir}/ex-plugins
-external_autoload_dir=${owned_zsh_dir}/ex-autoload
+external_plugins_dir=${owned_zsh_dir}/ext/plugins
+external_autoload_dir=${owned_zsh_dir}/ext/autoload
 
 #initialize plugin
 for s_plugin_dir in ${external_plugins_dir}/*(N); do
@@ -32,7 +32,7 @@ for s in ${owned_autoload_dir}/*.zsh(N); do
 done
 
 #add bin to PATH
-PATH=$PATH:${owned_zsh_dir}/bin
+PATH=$PATH:${owned_zsh_dir}/bin:${owned_zsh_dir}/ext/bin
 export BOOTSTRAP_ZSH_DIR=$owned_zsh_dir
 
 #cleanup
