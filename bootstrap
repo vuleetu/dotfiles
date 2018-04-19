@@ -137,7 +137,7 @@ install_requirements() {
   export HOMEBREW_NO_AUTO_UPDATE=true
 
   #Required tools from homebrew
-  CMD_LISTS='zsh autojump make git tig colordiff bzr wget curl ctags nodejs xz coreutils tmux fzf desk ack tldr aria2 mas youtube-dl pstree tree jq dvm cheat fswatch'
+  CMD_LISTS='zsh autojump make git tig colordiff bzr wget curl ctags nodejs xz coreutils tmux fzf desk ack tldr aria2 mas youtube-dl pstree tree jq dvm cheat fswatch docker-machine-completion docker-completion'
   log "Installing $CMD_LISTS..."
   brew install $CMD_LISTS
   log "Installing vim with python3 support"
@@ -197,7 +197,7 @@ install_resources() {
   log "Installing custom zsh configuration"
   ln -fs $BASE/zsh/bootstrap.zsh ~/.oh-my-zsh/custom/bootstrap.zsh
   log "Install plugins for oh-my-zsh"
-  sed -i.bak -e /^plugins=\(/,/\)/'s/^[[:space:]]*git$/git svn history go docker vagrant git-flow redis-cli tmux python rsync pip virtualenv zsh-completions zsh-autosuggestions zsh-syntax-highlighting kubectl tldr/g' ~/.zshrc
+  sed -i.bak -e /^plugins=\(/,/\)/'s/^[[:space:]]*git$/git svn history go vagrant git-flow redis-cli tmux python rsync pip virtualenv zsh-completions zsh-autosuggestions zsh-syntax-highlighting kubectl tldr/g' ~/.zshrc
 
   log "Installing golang"
   use_golang
