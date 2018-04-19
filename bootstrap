@@ -268,9 +268,12 @@ install_configs() {
   brew cask install $APP_LISTS
 
   log "Installing quicklook plugins"
-  PLUGIN_LISTS='qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize webpquicklook suspicious-package quicklookase qlvideo'
+  PLUGIN_LISTS='qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize webpquicklook suspicious-package quicklookase qlvideo epubquicklook quicklook-csv qladdict'
   log "Installing plugins ($PLUGIN_LISTS)..."
   brew cask install $PLUGIN_LISTS
+
+  log "Changing theme for subtitle quicklook plugin(qladdict)"
+  defaults write com.sub.QLAddict theme farran
 
   log "Installing required apps from AppStore via mas"
   mas install 944848654 434350458 836500024 412448059 451732904 1221250572 568494494
