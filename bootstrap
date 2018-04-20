@@ -263,7 +263,7 @@ install_configs() {
 
   #install apps via brew cask
   log "Installing required apps via brew cask"
-  APP_LISTS='iterm2 google-chrome macdown anki dash keepassxc boostnote itsycal skype slack dropbox evernote appcleaner the-unarchiver cheatsheet scroll-reverser anaconda dictunifier iina bitbar'
+  APP_LISTS='iterm2 google-chrome macdown anki dash keepassxc boostnote itsycal skype slack dropbox evernote appcleaner the-unarchiver cheatsheet scroll-reverser anaconda dictunifier iina bitbar notion docker'
   log "Installing apps ($APP_LISTS)..."
   brew cask install $APP_LISTS
 
