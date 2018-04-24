@@ -276,7 +276,7 @@ install_configs() {
   defaults write com.sub.QLAddict theme farran
 
   log "Installing required apps from AppStore via mas"
-  mas install 944848654 434350458 836500024 412448059 451732904 1221250572 568494494
+  mas install 944848654 434350458 836500024 412448059 451732904 1221250572 568494494 453114608 488536386 1284863847
 }
 
 install_requirements && install_resources
