@@ -137,7 +137,7 @@ install_requirements() {
   export HOMEBREW_NO_AUTO_UPDATE=true
 
   #Required tools from homebrew
-  CMD_LISTS='zsh autojump make git tig colordiff bzr wget curl ctags nodejs xz coreutils tmux fzf desk ack tldr aria2 mas youtube-dl pstree tree jq dvm cheat fswatch docker-machine-completion docker-completion docker-compose-completion fd watch m-cli htop findutils'
+  CMD_LISTS='zsh autojump make git tig colordiff bzr wget curl ctags nodejs xz coreutils tmux fzf desk ack tldr aria2 mas youtube-dl pstree tree jq dvm cheat fswatch docker-machine-completion docker-completion docker-compose-completion fd watch m-cli htop findutils git-cal zplug'
   log "Installing $CMD_LISTS..."
   brew install $CMD_LISTS
   log "Installing vim with python3 support"
@@ -188,16 +188,16 @@ install_resources() {
   [ ! -d $RES_DIR/powerline-shell ] && git clone --depth=1 https://github.com/banga/powerline-shell $RES_DIR/powerline-shell && python $RES_DIR/powerline-shell/setup.py install
 
   #oh-my-zsh
-  log "Installing oh-my-zsh which will change your login shell to zsh"
-  [ ! -d ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  log "Downloading zsh-completions, zsh-autosuggestions and zsh-syntax-highlighting"
-  [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ] && git clone --depth=1 git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-  [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] && git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-  [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-completions ] && git clone --depth=1 https://github.com/zsh-users/zsh-completions.git ~/.oh-my-zsh/custom/plugins/zsh-completions
-  log "Installing custom zsh configuration"
-  ln -fs $BASE/zsh/bootstrap.zsh ~/.oh-my-zsh/custom/bootstrap.zsh
-  log "Install plugins for oh-my-zsh"
-  sed -i.bak -e /^plugins=\(/,/\)/'s/^[[:space:]]*git$/git svn history go vagrant git-flow redis-cli tmux python rsync pip virtualenv zsh-completions zsh-autosuggestions zsh-syntax-highlighting kubectl tldr/g' ~/.zshrc
+  #log "Installing oh-my-zsh which will change your login shell to zsh"
+  #[ ! -d ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  #log "Downloading zsh-completions, zsh-autosuggestions and zsh-syntax-highlighting"
+  #[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ] && git clone --depth=1 git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+  #[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] && git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  #[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-completions ] && git clone --depth=1 https://github.com/zsh-users/zsh-completions.git ~/.oh-my-zsh/custom/plugins/zsh-completions
+  #log "Installing custom zsh configuration"
+  #ln -fs $BASE/zsh/bootstrap.zsh ~/.oh-my-zsh/custom/bootstrap.zsh
+  #log "Install plugins for oh-my-zsh"
+  #sed -i.bak -e /^plugins=\(/,/\)/'s/^[[:space:]]*git$/git svn history go vagrant git-flow redis-cli tmux python rsync pip virtualenv zsh-completions zsh-autosuggestions zsh-syntax-highlighting kubectl tldr/g' ~/.zshrc
 
   log "Installing golang"
   use_golang
