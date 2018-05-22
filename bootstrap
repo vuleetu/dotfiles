@@ -137,7 +137,7 @@ install_requirements() {
   export HOMEBREW_NO_AUTO_UPDATE=true
 
   #Required tools from homebrew
-  CMD_LISTS='zsh autojump make git tig colordiff bzr wget curl ctags nodejs xz coreutils tmux fzf desk ack tldr aria2 mas youtube-dl pstree tree jq dvm cheat fswatch docker-machine-completion docker-completion docker-compose-completion fd watch m-cli htop findutils git-cal zplug diff-so-fancy git-flow howdoi git-extras'
+  CMD_LISTS='zsh autojump make git tig colordiff bzr wget curl nodejs xz coreutils tmux fzf desk ack tldr aria2 mas youtube-dl pstree tree jq dvm cheat fswatch docker-machine-completion docker-completion docker-compose-completion fd watch m-cli htop findutils git-cal zplug diff-so-fancy git-flow howdoi git-extras'
   log "Installing $CMD_LISTS..."
   brew install $CMD_LISTS
   log "Installing vim with python3 support"
@@ -148,6 +148,9 @@ install_requirements() {
 
   log "Installing coloretest"
   npm install -g colortest
+
+  log "Install universal-ctags"
+  brew install --HEAD universal-ctags/universal-ctags/universal-ctags
   return 0
 }
 
