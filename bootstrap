@@ -137,7 +137,7 @@ install_requirements() {
   export HOMEBREW_NO_AUTO_UPDATE=true
 
   #Required tools from homebrew
-  CMD_LISTS='zsh autojump make git tig colordiff bzr wget curl nodejs xz coreutils tmux fzf desk ack tldr aria2 mas youtube-dl pstree tree jq dvm cheat fswatch docker-machine-completion docker-completion docker-compose-completion fd watch m-cli htop findutils git-cal zplug diff-so-fancy git-flow howdoi git-extras ical-buddy reattach-to-user-namespace mycli shellcheck wtf'
+  CMD_LISTS='zsh golang autojump make git tig colordiff bzr wget curl nodejs xz coreutils tmux fzf desk ack tldr aria2 mas youtube-dl pstree tree jq dvm cheat fswatch docker-machine-completion docker-completion docker-compose-completion fd watch m-cli htop findutils git-cal zplug diff-so-fancy git-flow howdoi git-extras ical-buddy reattach-to-user-namespace mycli shellcheck wtf'
   log "Installing $CMD_LISTS..."
   brew install $CMD_LISTS
   log "Installing vim with python3 support"
@@ -205,11 +205,11 @@ install_resources() {
   #log "Install plugins for oh-my-zsh"
   #sed -i.bak -e /^plugins=\(/,/\)/'s/^[[:space:]]*git$/git svn history go vagrant git-flow redis-cli tmux python rsync pip virtualenv zsh-completions zsh-autosuggestions zsh-syntax-highlighting kubectl tldr/g' ~/.zshrc
 
-  log "Installing golang"
-  use_golang
+  #log "Installing golang"
+  #use_golang
 
-  log "Installing Vundle for VIM"
-  [ ! -d ~/.vim/bundle/Vundle.vim ] && git clone --depth=1 https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  #log "Installing Vundle for VIM"
+  #[ ! -d ~/.vim/bundle/Vundle.vim ] && git clone --depth=1 https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 }
 
 install_configs() {
