@@ -6,14 +6,14 @@ log() {
   case $1 in
   [wW])
      shift
-     echo -e "\033[33m$@\033[0m"
+     echo -e "\033[33m>>>>>> $@\033[0m"
      ;;
   [eE])
      shift
-     echo -e "\033[31m$@\033[0m"
+     echo -e "\033[31m>>>>>> $@\033[0m"
      ;;
   *)
-     echo -e "\033[34m$@\033[0m"
+     echo -e "\033[34m>>>>>>$@\033[0m"
      ;;
   esac
 }
@@ -120,15 +120,17 @@ log "Creating resoures folder ($RES_DIR)"
 ###########TASKS########
 install_requirements() {
   #Homebrew
-  log "Checking if Homebrew installed before"
+  log "Installing Homebrew"
   if ! command -v brew > /dev/null 2>&1; then
-      log "Installing Homebrew..."
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
   #Set homebrew mirrors
-  log "Switch homebrew mirrors to USTC"
+  log "Switch Homebrew mirrors to USTC"
   export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+  (cd "$(brew --repo)" && git remote set-url origin https://mirrors.ustc.edu.cn/brew.git)
+  (cd "$(brew --repo homebrew/core)" && git remote set-url https://mirrors.ustc.edu.cn/homebrew-core.git)
+  (cd "$(brew --repo caskroom/cask)" && git remote set-url https://mirrors.ustc.edu.cn/homebrew-cask.git)
   log "Updating homebrew formula"
   brew update -v
   log "Disable brew autoupdate when install command"
