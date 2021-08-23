@@ -127,10 +127,8 @@ install_requirements() {
   fi
 
   #Set homebrew mirrors
-  log "Loading homebrew utils"
-  source $BASE/zsh/autoload/homebrew.lib
-  log "Updating homebrew formula mirrors"
-  update_brew_mirror tsinghua
+  log "Switch homebrew mirrors to USTC"
+  export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
   log "Updating homebrew formula"
   brew update -v
   log "Disable brew autoupdate when install command"
