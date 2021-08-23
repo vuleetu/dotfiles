@@ -289,8 +289,9 @@ install_configs() {
   mas install 944848654 434350458 836500024 412448059 451732904 1221250572 568494494 453114608 488536386 1284863847 1039633667 563362017
 }
 
-install_requirements && install_resources
-install_configs
+install_requirements
+#install_requirements && install_resources
+#install_configs
 
 #### HELP ####
 # command, type, hash
