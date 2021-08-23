@@ -131,15 +131,18 @@ install_requirements() {
   (cd "$(brew --repo)" && git remote set-url origin https://mirrors.ustc.edu.cn/brew.git)
   (cd "$(brew --repo homebrew/core)" && git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git)
   #(cd "$(brew --repo caskroom/cask)" && git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git)
-  log "Updating homebrew formula"
+  log "Updating Homebrew formula"
   brew update -v
-  log "Disable brew autoupdate when install command"
+  log "Disable Homebrew autoupdate feature during install command process"
   export HOMEBREW_NO_AUTO_UPDATE=true
 
   #Required tools from homebrew
-  CMD_LISTS='zsh golang autojump make git tig colordiff bzr wget curl nodejs xz coreutils tmux fzf desk ack tldr aria2 mas youtube-dl pstree tree jq dvm cheat fswatch docker-machine-completion docker-completion docker-compose-completion fd watch m-cli htop findutils git-cal zplug diff-so-fancy git-flow howdoi git-extras ical-buddy reattach-to-user-namespace mycli shellcheck wtf neovim'
+  CMD_LISTS='zsh golang autojump make git tig colordiff bzr wget curl nodejs xz coreutils tmux fzf desk ack tldr pstree tree jq zplug diff-so-fancy git-flow git-extras reattach-to-user-namespace neovim'
+  #OPT_CMD_LISTS='aria2 mas youtube-dl dvm cheat fswatch docker-machine-completion docker-completion docker-compose-completion fd watch m-cli htop findutils git-cal howdoi ical-buddy mycli shellcheck wtf'
   log "Installing $CMD_LISTS..."
   brew install $CMD_LISTS
+
+  #We have neovim install so ignore the old thing
   #log "Installing vim with python3 support"
   #brew install vim --with-python3
 
