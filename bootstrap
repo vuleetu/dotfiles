@@ -129,8 +129,8 @@ install_requirements() {
   log "Switch Homebrew mirrors to USTC"
   export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
   (cd "$(brew --repo)" && git remote set-url origin https://mirrors.ustc.edu.cn/brew.git)
-  (cd "$(brew --repo homebrew/core)" && git remote set-url https://mirrors.ustc.edu.cn/homebrew-core.git)
-  (cd "$(brew --repo caskroom/cask)" && git remote set-url https://mirrors.ustc.edu.cn/homebrew-cask.git)
+  (cd "$(brew --repo homebrew/core)" && git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git)
+  (cd "$(brew --repo caskroom/cask)" && git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git)
   log "Updating homebrew formula"
   brew update -v
   log "Disable brew autoupdate when install command"
