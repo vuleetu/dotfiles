@@ -146,11 +146,11 @@ install_requirements() {
   #log "Installing vim with python3 support"
   #brew install vim --with-python3
 
-  log "Installing lunchy(A friendly wrapper for launchctl)"
-  gem install lunchy
+  #log "Installing lunchy(A friendly wrapper for launchctl)"
+  #gem install lunchy
 
-  log "Installing coloretest"
-  npm install -g colortest
+  #log "Installing coloretest"
+  #npm install -g colortest
 
   log "Install universal-ctags"
   brew install --HEAD universal-ctags/universal-ctags/universal-ctags
@@ -158,7 +158,7 @@ install_requirements() {
 }
 
 install_resources() {
-  use_proxy
+  #use_proxy
 
   #http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/
   #http://blog.bbkanba.com/配置linux下dircolorsls命令和mac下iterm2的颜色让终端iterm2或terminal也色彩/
@@ -192,9 +192,9 @@ install_resources() {
   #git clone --depth=1 https://github.com/tamul/solarized-osx-terminal-colors.git $RES_DIR/solarized-osx-terminal-colors
   log "Downloading and install patched fonts for tools which use Powerline..."
   [ ! -d $RES_DIR/fonts ] && git clone https://github.com/powerline/fonts.git --depth=1 $RES_DIR/fonts && $RES_DIR/fonts/install.sh
-  log w "Change font to SourceCode-Pro before use Powerline related tools"
-  log "Installing powerline-shell..."
-  [ ! -d $RES_DIR/powerline-shell ] && git clone --depth=1 https://github.com/banga/powerline-shell $RES_DIR/powerline-shell && python $RES_DIR/powerline-shell/setup.py install
+  #log w "Change font to SourceCode-Pro before use Powerline related tools"
+  #log "Installing powerline-shell..."
+  #[ ! -d $RES_DIR/powerline-shell ] && git clone --depth=1 https://github.com/banga/powerline-shell $RES_DIR/powerline-shell && python $RES_DIR/powerline-shell/setup.py install
 
   #oh-my-zsh
   #log "Installing oh-my-zsh which will change your login shell to zsh"
@@ -294,8 +294,7 @@ install_configs() {
   mas install 944848654 434350458 836500024 412448059 451732904 1221250572 568494494 453114608 488536386 1284863847 1039633667 563362017
 }
 
-install_requirements
-#install_requirements && install_resources
+install_requirements && install_resources
 #install_configs
 
 #### HELP ####
